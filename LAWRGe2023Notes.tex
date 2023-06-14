@@ -1,0 +1,221 @@
+\documentclass[12pt]{amsart}
+
+\usepackage{tikz}
+\usepackage{bbm}
+\usetikzlibrary{3d,arrows,calc,positioning,decorations.pathreplacing,matrix} %,arrows.meta}
+
+\usepackage{calligra,mathrsfs}
+\usepackage[all]{xy}
+\usepackage{float, comment}
+\usepackage{mathtools}
+%\usepackage{mathabx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{amstext} 
+\usepackage{amsopn}
+%\usepackage{mathrsfs} % allows \mathscr
+\usepackage[mathscr]{eucal}
+\usepackage{enumerate}
+\usepackage{xcolor}
+\usepackage{graphicx} % allows \includegraphics{}s
+\usepackage{scalerel}
+\usepackage{microtype} % improves formattings
+\usepackage[margin=1in,marginparwidth=0.8in, marginparsep=0.1in]{geometry}
+\renewcommand{\baselinestretch}{1.2} % changes page formatting
+\usepackage[bookmarks=true, bookmarksopen=true, bookmarksdepth=3,bookmarksopenlevel=2, colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, menucolor=blue, urlcolor=blue]{hyperref}
+% \usepackage{newtxtext} % improves font appearance
+\usepackage{tikz}
+\usepackage{bbm}
+\usepackage[all]{xy}
+\usepackage{xspace}
+\usetikzlibrary{arrows,calc,positioning,decorations.pathreplacing} %,arrows.meta}
+
+\DeclareMathOperator{\cHom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+
+\numberwithin{equation}{section}
+\newtheorem{Theorem}[equation]{Theorem}
+\newtheorem{Proof}[equation]{Proof}
+\newtheorem{Proposition}[equation]{Proposition} 
+\newtheorem{Lemma}[equation]{Lemma}
+\newtheorem{Open}[equation]{Open Question}
+\newtheorem{Corollary}[equation]{Corollary}
+\newtheorem{Conjecture}[equation]{Conjecture}
+\newtheorem{Specialthm}{Theorem}
+\newtheorem{Question}{Question}
+
+\theoremstyle{definition}
+\newtheorem{Remark}[equation]{Remark}
+\newtheorem{Example}[equation]{Example}
+\newtheorem{Definition}[equation]{Definition}
+
+\numberwithin{figure}{section}
+
+\def\H{{H}}
+\def\mod{{\rm{mod}}}
+\def\res{{\rm{res}}}
+\def\cl{{\mathrm{cl}}}
+%\def\cn{{\mathrm{cn}}}
+\def\cn{\leq 0}
+\def\uk{\underline{k}}
+\def\ti{{\tilde{i}}}
+\def\tj{{\tilde{j}}}
+\def\tm{{\tilde{m}}}
+\def\tn{{\tilde{n}}}
+\def\tp{{\tilde{p}}}
+\def\tq{{\tilde{q}}}
+\def\ts{{\tilde{s}}}
+\def\n{{\bf{n}}}
+\def\bL{{\mathbb{L}}}
+%\def\Spec{{\rm{Spec}}}
+\def\ua{{\underline{a}}}
+\def\ub{{\underline{b}}}
+\def\ue{{\underline{e}}}
+\def\uj{{\underline{j}}}
+\def\ux{{\underline{x}}}
+\def\uy{{\underline{y}}}
+\def\la{\langle}
+\def\ra{\rangle}
+\def\tD{\widetilde{D}}
+\def\om{\overline{m}}
+\def\l{\lambda}
+\def\ttimes{\widetilde{\times}}
+\def\tbox{\widetilde{\boxtimes}}
+\def\bbox{{\boxtimes}}
+\def\O{\mathcal{O}}
+\def\K{\mathcal{K}}
+\def\bG{\mathbb{G}}
+\newcommand{\al}{\alpha}
+\newcommand{\gr}{\mathrm{gr}}
+\newcommand{\mb}[1]{\mathbf{#1}}
+\newcommand{\fsl}{\mathfrak{sl}}
+\newcommand{\fg}{\mathfrak{g}}
+\newcommand{\fn}{\mathfrak{n}}
+\newcommand{\bk}{{\mathbbm k}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\bN}{\mathbb{N}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\bfC}{{\mathbf{C}}}
+\newcommand{\bfD}{{\mathbf{D}}}
+\newcommand{\bfI}{{\mathbf{I}}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\sW}{\mathscr{W}}
+\newcommand{\sX}{\mathscr{X}}
+\newcommand{\sY}{\mathscr{Y}}
+\newcommand{\sZ}{\mathscr{Z}}
+%% code from mathabx.sty and mathabx.dcl
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+	<5> <6> <7> <8> <9> <10>
+	<10.95> <12> <14.4> <17.28> <20.74> <24.88>
+	mathx10
+}{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathAccent{\widecheck}{0}{mathx}{"71}
+\newcommand{\wc}{\widecheck}
+\newcommand{\Sp}{\mathrm{Sp}}
+\DeclareMathSymbol{\shortminus}{\mathbin}{AMSa}{"39}
+
+\newcommand{\balancedVPhantom}[1]{% gives minimum vertical size
+	\mathsurround=0pt \vcenter{\hrule width0pt height #1}\ignorespaces
+}
+
+
+\newcommand{\arrtip}{latex'}
+
+\begin{document}
+\title{LAWRGe 2023 Notes}
+
+
+\maketitle
+
+\setcounter{tocdepth}{1}
+
+\tableofcontents
+
+\section{Introduction}
+
+\thispagestyle{empty}
+
+Here is a template for a simple commutative diagram in tikz:
+\begin{equation*}
+	\begin{tikzpicture}
+		[baseline=(current  bounding  box.center),thick,>=\arrtip]
+		\node (a) at (0,0) {$X'$};
+		\node (b) at (2.5,0) {$Y'$};
+		\node (c) at (0,-1.5) {$X$};
+		\node (d) at (2.5,-1.5) {$Y$};
+		\draw[->] (a) to node[above] {$f' $} (b);
+		\draw[->] (b) to node[right] {$h $} (d);
+		\draw[->] (a) to node[left] {$h' $}(c);
+		\draw[->] (c) to node[above] {$f $} (d);
+	\end{tikzpicture}
+\end{equation*}
+
+\section{Lecture 1 (Monday)}
+
+\section{Lecture 2 (Monday)}
+
+\section{Lecture 3 (Monday)}
+
+\section{Lecture 4 (Monday)}
+
+\section{Lecture 5 (Tuesday)}
+
+\section{Lecture 6 (Tuesday)}
+
+\section{Lecture 7 (Tuesday)}
+
+\section{Lecture 8 (Tuesday)}
+
+\section{Lecture 9 (Wednesday)}
+
+\section{Lecture 10 (Wednesday)}
+
+\section{Lecture 11 (Wednesday)}
+
+\section{Lecture 12 (Wednesday)}
+
+\section{Lecture 13 (Thursday)}
+
+\section{Lecture 14 (Thursday)}
+
+\section{Lecture 15 (Friday)}
+
+\section{Lecture 16 (Friday)}
+
+\section{Lecture 17 (Friday)}
+
+\section{Lecture 18 (Friday)}
+
+\end{document}
