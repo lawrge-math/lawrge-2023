@@ -16,20 +16,6 @@
 
 \thispagestyle{empty}
 
-Here is a template for a simple commutative diagram in tikz:
-\begin{equation*}
-	\begin{tikzpicture}
-		[baseline=(current  bounding  box.center),thick,>=\arrtip]
-		\node (a) at (0,0) {$X'$};
-		\node (b) at (2.5,0) {$Y'$};
-		\node (c) at (0,-1.5) {$X$};
-		\node (d) at (2.5,-1.5) {$Y$};
-		\draw[->] (a) to node[above] {$f' $} (b);
-		\draw[->] (b) to node[right] {$h $} (d);
-		\draw[->] (a) to node[left] {$h' $}(c);
-		\draw[->] (c) to node[above] {$f $} (d);
-	\end{tikzpicture}
-\end{equation*}
 
 \section{Lecture 1 (Monday)}
 \input{monlec1}

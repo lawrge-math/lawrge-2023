@@ -1,3 +1,157 @@
 % !TeX root = LAWRGe2023Notes.tex
 
-Hey this happened on Monday at 9 
+Throughout the week we will use the language of TQFTs to relate physics and math. The goal of this talk is to introduce the relevant terminology and some definitions.
+
+\subsection{TQFTs}
+
+\subsection{Definition}
+
+We begin by introducing the notion of a $d$-dimensional TQFT.
+
+\begin{defn}
+	Let $M,N$ be closed oriented $(d-1)$-manifolds. A \defterm{$d$-dimensional cobordism $W$ from $M$ to $N$} is an oriented $d$-dimensional manifold $W$ together with an identification $\partial W\cong \overline{M}\coprod N$.
+\end{defn}
+
+\begin{remark}
+	There is also a notion of an unoriented cobordism between two unoriented manifolds, framed cobordism between two framed manifolds and, more generally, a cobordism equipped with a tangential structure.
+\end{remark}
+
+Cobordisms define a symmetric monoidal category $\Cob^{or}_{d, d-1}$ as follows:
+\begin{itemize}
+	\item Its objects are closed oriented $(d-1)$-manifolds.
+	\item Morphisms from $M$ to $N$ are diffeomorphism classes of oriented cobordisms from $M$ to $N$.
+	\item Composition of a cobordism $W_1$ from $M$ to $N$ and a cobordism $W_2$ from $N$ to $O$ is given by the cobordism $W_1\coprod_N W_2$ from $M$ to $O$.
+	\item The symmetric monoidal structure is given by disjoint union of manifolds.
+\end{itemize}
+
+\begin{defn}
+	An \defterm{oriented $d$-dimensional TQFT} is a symmetric monoidal functor $Z\colon \Cob_{d, d-1}\rightarrow \Vect$ to the category of ($\C$-)vector spaces with tensor product as the monoidal structure.
+\end{defn}
+
+The physical idea of the definition is as follows:
+\begin{itemize}
+	\item For a closed $(d-1)$-manifold $M$ we have a vector space $Z(M)$. It is the vector space of states of the TQFT (often a Hilbert space in physical examples).
+	
+	\item For a closed $d$-manifold $W$ we have a number $Z(W)$. It is the partition function of the TQFT on $W$.
+	
+	\item For a cobordism $W$ from $M$ to $N$ we get a linear map $Z(W)\colon Z(M)\rightarrow Z(N)$. It is the \emph{transition amplitude} ($S$-matrix) associated to the cobordism $W$.
+\end{itemize}
+
+\subsection{Extending down}
+
+Given a decomposition $W = W_1\coprod_M W_2$ of a closed oriented $d$-manifold into a union of two manifolds along their common boundary, one can compute the partition function as
+\[Z(W) = Z(W_2)(Z(W_1)(1)),\]
+where
+\[Z(W_1)\colon \C\longrightarrow Z(M),\qquad Z(W_2)\colon Z(M)\longrightarrow \C.\]
+
+This allows one to compute the partition function by decomposing a manifold into pieces. This is related to the principle of locality of a QFT. Full locality will also allow us to compute the partition function by decomposing the boundary $M$ into pieces. This can be made precise by extending the category $\Cob^{or}_{d, d-1}$ to a 2-category or even a higher category as follows. Let $\Cob^{or}_{d, d-1, d-2}$ be the symmetric monoidal 2-category as follows:
+\begin{itemize}
+	\item Its objects are closed oriented $(d-2)$-manifolds.
+	\item 1-morphisms from $M$ to $N$ are oriented $(d-1)$-dimensional cobordisms $W$ from $M$ to $N$.
+	\item 2-morphisms from $W_1\colon M\rightarrow N$ to $W_2\colon M\rightarrow N$ are diffeomorphism classes of $d$-dimensional cobordisms between $W_1$ and $W_2$.
+\end{itemize}
+
+One can also extend it all the way down and define the symmetric monoidal $d$-category $\Cob^{or}_d$ whose objects are closed oriented 0-manifolds (disjoint unions of oriented points), 1-morphisms are 1-dimensional cobordisms and so on.
+
+To define TQFTs we also need to extend the target category $\Vect$ down. For instance, for once-extended TQFTs we are looking for a symmetric monoidal bicategory $\cC$ (usually it is the bicategory of some class of categories) with the property that $\Hom_\cC(1, 1)\cong \Vect$. Similarly, for fully extended TQFTs we are looking for a symmetric monoidal $d$-category $\cC$ with a similar property for top-level morphisms.
+
+\begin{defn}
+	Let $\cC$ be a (linear) symmetric monoidal $d$-category. A \defterm{fully extended TQFT} is a symmetric monoidal functor $Z\colon \Cob^{or}_d\rightarrow \cC$.
+\end{defn}
+
+Note that given any fully extended TQFT we obtain higher-categorical structures irrespectively of the target $\cC$:
+\begin{itemize}
+	\item If $M$ is a closed oriented $(d-1)$-manifold, $Z(M)$ is a vector space. We can think of $Z(M)$ as an element of the vector space $\Hom_\cC(Z(\varnothing^{d-1}), Z(M))$.
+	
+	\item If $M$ is a closed oriented $(d-2)$-manifold, $\Hom_\cC(Z(\varnothing^{d-2}), Z(M))$ is a category. In fact, the structure of an oriented TQFT will induce a Calabi--Yau structure on this.
+	\item \dots
+\end{itemize}
+
+\subsection{Extending up}
+
+Let $M$ be a closed oriented $d$-manifold and $\Diff(M)$ the topological group of orientation-preserving diffeomorphisms of $M$. There is a natural map
+\[\MCG(M) = \pi_0\Diff(M)\longrightarrow \Aut_{\Bord^{or}_{d, d-1}}(M)\]
+given by considering $W=M\times [0, 1]$ with the identification $\partial W\cong \overline{M}\coprod M$ twisted by a diffeomorphism. The reason that isotopic diffeomorphisms give rise to the same morphisms is that in the definition of $\Bord^{or}_{d, d-1}$ we identify diffeomorphic cobordisms.
+
+The full homotopy type of the diffeomorphism group can be encoded if we work in the framework of $\infty$-categories. Namely, there is a symmetric monoidal $\infty$-category $\Bord^{or}_{d, d-1}$ which has the following informal description:
+\begin{itemize}
+	\item Its objects are closed oriented $(d-1)$-manifolds.
+	\item 1-morphisms from $M$ to $N$ are oriented cobordisms from $M$ to $N$.
+	\item 2-morphisms are given by diffeomorphisms of cobordisms.
+	\item 3-morphisms are given by isotopies of diffeomorphisms.
+	\item ...
+\end{itemize}
+
+Similarly, there is a symmetric monoidal $(\infty, d)$-category $\Bord^{or}_d$.
+
+\begin{defn}
+	Let $\cC$ be a symmetric monoidal $(\infty, d)$-category. A \defterm{fully extended TQFT} is a symmetric monoidal functor $Z\colon \Bord^{or}_d\rightarrow \cC$.
+\end{defn}
+
+In physics the state space on a closed oriented $(d-1)$-manifold $M$ is often a chain complex $Z(M)\in\Ch$ (with the differential the BRST differential coming from gauge symmetries and/or supersymmetric twisting). So, while on the level of cohomology there is an action of the mapping class group $\MCG(M)$ on $\rH^\bullet(Z(M))$, on the chain level it should extend to a homotopy-coherent action of $\rC_\bullet(\Diff(M))$ (equipped with the Pontryagin product) on the chain complex $Z(M)$. We will encounter the following two versions of this action:
+\begin{itemize}
+	\item Consider a $d$-dimensional TQFT $Z$ (for $d\geq 2$) and the chain complex $Z(S^{d-1})$. The natural $S^1$-action on $S^{d-1}$ induces a $\C_\bullet(S^1)$-action on the chain complex $Z(S^{d-1})$. This action boils down to a square-zero degree $-1$ operation $B\colon Z(S^{d-1})\rightarrow Z(S^{d-1})$.
+	
+	\item Consider a $d$-dimensional TQFT $Z$ (for $d\geq 3$) and the category $Z(S^{d-2})$. The natural $S^1$-action on $S^{d-2}$ induces a natural automorphism of the identity functor on $Z(S^{d-2})$.
+\end{itemize}
+
+If $M$ is a closed oriented $d$-manifold, the partition function $Z(M)$ is merely a number. So, the higher-categorical structure is irrelevant in this case and we simply have that $Z(M)$ is invariant under $\Diff(M)$. It turns out to be useful to phrase this condition by saying that
+\[Z(M)\in\rH^0(\B\Diff(M); \C).\]
+
+\subsection{Boundary conditions}
+
+The notion of a relative TQFT was introduced by Freed--Teleman and Johnson-Freyd--Scheimbauer. We will not give a precise definition, but will just indicate the main idea.
+
+Suppose $Z\colon \Cob^{or}_{d, d-1}\rightarrow \Vect$ be a $d$-dimensional TQFT. The partition function $Z(M)$ \emph{as a number} makes sense only for a closed oriented $d$-manifold. Given a \emph{boundary condition}, we can evaluate the theory on manifolds with boundary as follows:
+\begin{itemize}
+	\item For any closed oriented $(d-1)$-manifold $M$ we have the space of states $Z(M)$.
+	\item The boundary condition defines a distinguished vector $Z^\partial(M)\in Z(M)$.
+	\item Given a compact oriented $d$-manifold $W$ with boundary $M$ we may view it as a cobordism $M\rightarrow \varnothing$. In particular,
+	\[Z(W)\colon Z(M)\longrightarrow \C.\]
+	So, the partition function of the TQFT on $W$ with the given boundary condition is
+	\[Z(W)(Z^\partial(M)).\]
+\end{itemize}
+
+We can also talk about boundary conditions to once-extended or fully extended TQFTs. Then:
+\begin{itemize}
+	\item For any closed oriented $(d-k)$-manifold $M$ we have a $(k-1)$-category $\Hom_\cC(Z(\varnothing^{d-k}), Z(M))$.
+	\item The boundary condition defines a distinguished object $Z^\partial(M)\in \Hom_\cC(Z(\varnothing^{d-k}), Z(M))$.
+\end{itemize}
+
+For instance, on the level of the point we get a distinguished object $Z^\partial(\pt)\in\Hom_\cC(1, Z(\pt))$ in the $(d-1)$-category $\Hom_\cC(1, Z(\pt))$. So, we can think of this as the $(d-1)$-category of \emph{boundary conditions} (more precisely, fully local boundary conditions correspond to suitably dualizable objects of this $(d-1)$-category).
+
+\subsection{2d mirror symmetry}
+
+I will end this lecture by explaining the TQFT ideas behind the usual two-dimensional mirror symmetry as a warm up for three-dimensional mirror symmetry. We have the following 2d TQFTs:
+\begin{itemize}
+	\item Let $M$ be a symplectic manifold. Then one can define the 2d A-model $Z_{2dA, M}$. The category of boundary conditions $Z_{2dA, M}(\pt)$ is some version of the Fukaya category of $M$.
+	
+	\item $M$ be a smooth complex algebraic variety. Then one can define the 2d B-model $Z_{2dB, M}$. The category of boundary conditions $Z_{2dB, M}(\pt)$ is some version of the derived category of coherent sheaves on $M$.
+\end{itemize}
+
+There are also equivariant versions of these 2d TQFTs:
+\begin{itemize}
+	\item Given a (real) Lie group $G$ acting in a Hamiltonian way on a symplectic manifold $M$ there is an equivariant 2d A-model.
+	\item Given a complex algebraic group $G_\C$ acting on a smooth complex algebraic variety $M$ there is an equivariant 2d B-model.
+\end{itemize}
+
+\begin{remark}
+	If $M$ is not compact, these TQFTs are not defined on all 2-dimensional cobordisms.
+\end{remark}
+
+\begin{remark}
+	Even though the framed TQFTs are well-defined, there is an ``orientation anomaly'' which complicates the definition of the oriented TQFT. The partition function on a surface $\Sigma_g$ of genus $g$ defines an element of $\rH^{2(g-1)\dim_\R M}(\B\Diff(\Sigma_g); \C)$ rather than an element of $\rH^0(\B\Diff(\Sigma_g); \C)$. For instance, the underlying number is zero for $g\neq 1$.
+\end{remark}
+
+The statement of 2-dimensional homological mirror symmetry can be formulated as follows. We say a symplectic manifold $M$ is 2d mirror to a complex algebraic variety $M^\vee$ if
+\[Z_{2dA, M}\cong Z_{2dB, M^\vee}.\]
+
+This contains the following statements:
+\begin{itemize}
+	\item An equivalence of Calabi-Yau categories.
+	\[Z_{2dA, M}(\pt)\cong Z_{2dB, M^\vee}(\pt).\]
+	In practice the left-hand side is a version of the Fukaya category of $M$ and the right-hand side is a version of the derived category of coherent sheaves on $M^\vee$.
+	\item An equivalence of commutative algebras
+	\[\rH^\bullet(Z_{2dA, M}(S^1))\cong \rH^\bullet(Z_{2dB, M^\vee}(S^1)).\]
+	In fact, there is a Gerstenhaber structure (explained in the next lecture) on both sides which is also preserved.
+\end{itemize}
