@@ -1,3 +1,343 @@
 % !TeX root = LAWRGe2023Notes.tex
 
-Hey this happened on Monday at 9 
+\documentclass[10pt]{amsart}
+
+\newcommand{\B}{\mathrm{B}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\rC}{\mathrm{C}}
+\newcommand{\CP}{\mathbf{CP}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\rH}{\mathrm{H}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\R}{\mathbf{R}}
+
+\newcommand{\Conf}{\mathrm{Conf}}
+\newcommand{\Emb}{\mathrm{Emb}}
+\newcommand{\pt}{\mathrm{pt}}
+\newcommand{\SO}{\mathrm{SO}}
+
+\DeclareMathOperator{\Spec}{Spec}
+
+\newcommand{\defterm}[1]{\textbf{\emph{#1}}}
+
+\usepackage{tikz}
+\usepackage{bbm}
+\usetikzlibrary{3d,arrows,calc,positioning,decorations.pathreplacing,matrix}
+
+\usepackage{calligra,mathrsfs}
+\usepackage[all]{xy}
+\usepackage{float, comment}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{amstext}
+\usepackage{amsopn}
+\usepackage[mathscr]{eucal}
+\usepackage{enumerate}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{scalerel}
+\usepackage{microtype}
+\usepackage[margin=1in,marginparwidth=0.8in, marginparsep=0.1in]{geometry}
+\renewcommand{\baselinestretch}{1.2}
+\usepackage[bookmarks=true, bookmarksopen=true, bookmarksdepth=3,bookmarksopenlevel=2, colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, menucolor=blue, urlcolor=blue]{hyperref}
+\usepackage{xspace}
+
+\DeclareMathOperator{\cHom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{Solution}{Solution}
+
+\def\H{{H}}
+\def\mod{{\rm{mod}}}
+\def\res{{\rm{res}}}
+\def\cl{{\mathrm{cl}}}
+\def\cn{\leq 0}
+\def\uk{\underline{k}}
+\def\ti{{\tilde{i}}}
+\def\tj{{\tilde{j}}}
+\def\tm{{\tilde{m}}}
+\def\tn{{\tilde{n}}}
+\def\tp{{\tilde{p}}}
+\def\tq{{\tilde{q}}}
+\def\ts{{\tilde{s}}}
+\def\n{{\bf{n}}}
+\def\bL{{\mathbb{L}}}
+\def\ua{{\underline{a}}}
+\def\ub{{\underline{b}}}
+\def\ue{{\underline{e}}}
+\def\uj{{\underline{j}}}
+\def\ux{{\underline{x}}}
+\def\uy{{\underline{y}}}
+\def\la{\langle}
+\def\ra{\rangle}
+\def\ov{\overline}
+\def\ul{\underline}
+\def\wt{\widetilde}
+
+\def\ba{\begin{align}}
+\def\ea{\end{align}}
+
+\def\be{\begin{equation}}
+\def\ee{\end{equation}}
+
+\def\bc{\begin{center}}
+\def\ec{\end{center}}
+
+\def\bp{\begin{proof}}
+\def\ep{\end{proof}}
+
+\def\bi{\begin{itemize}}
+\def\ei{\end{itemize}}
+
+\def\ben{\begin{enumerate}}
+\def\een{\end{enumerate}}
+
+\def\bt{\begin{tabular}}
+\def\et{\end{tabular}}
+
+\def\i{\item}
+
+\def\lra{\longrightarrow}
+\def\Lra{\Longrightarrow}
+\def\iff{\Leftrightarrow}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\arrtip}{latex'}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+
+\begin{document}
+\title{Algebraic structures in TQFTs}
+\author{Pavel Safronov}
+\maketitle
+
+In this lecture $Z$ denotes some $d$-dimensional TQFT. For simplicity I will assume that it is fully extended, but many statements make sense with partially extended TQFTs. I will assume that the TQFT is valued in the ($\infty$-)category of chain complexes.
+
+\section{Local and line operators}
+
+Besides computing partition functions, in physics one is often interested in computing correlation functions of some local operators. Let us introduce them using the following heuristic idea.
+
+Suppose $M$ is a closed oriented $d$-manifold and $x\in M$ is a point with an insertion of a ``local operator'' $\cO$. By locality one should be able to compute the partition function as follows:
+\begin{itemize}
+\item Consider a ball $D\subset M$ around $x$ and let $S^{d-1}\subset M$ be its boundary.
+\item $Z(M\setminus D)$ defines a map $Z(S^{d-1})\rightarrow \C$. The local operator defines a map $Z(D_{\cO})\colon \C\rightarrow Z(S^{d-1})$ and the partition function on $M$ is the composite of these two maps.
+\end{itemize}
+
+If we are being agnostic about local operators, we may observe that the only thing we have used about them is the vector of $Z(S^{d-1})$ that they define. This leads us to the following definition.
+
+\begin{defn}
+Let $Z$ be a $d$-dimensional TQFT. The \defterm{space of local operators} is the chain complex $Z(S^{d-1})$.
+\end{defn}
+
+One also considers defects given by extended objects: lines, surfaces, ... embedded in $M$. Besides local operators, we will only encounter line operators this week. We can think of them as follows:
+\begin{itemize}
+\item A line operator is specified by a defect supported on a knot $K\subset M$. The same analysis as before shows that we can compute the partition function if we know the corresponding vector in $Z(S^{d-2}\times K)$.
+
+\item One often only considers ``local'' line operators which themselves obey cutting and gluing axioms of a TQFT. These local line operators define an object of the category $Z(S^{d-2})$.
+\end{itemize}
+
+This motivates the following definition.
+
+\begin{defn}
+Let $Z$ be a $d$-dimensional TQFT.
+\begin{itemize}
+\item The \defterm{space of line operators} is $Z(S^{d-2}\times S^1)$.
+\item The \defterm{category of line operators} is $Z(S^{d-2})$.
+\end{itemize}
+\end{defn}
+
+\section{$\bE_d$-algebras}
+
+Our next goal is to explain algebraic structures present on the space of local and line operators. Given any cobordism $W$ from $k$ copies of $S^{d-1}$ to $S^{d-1}$ we get an algebraic operation
+\[Z(W)\colon Z(S^{d-1})^{\otimes k}\longrightarrow Z(S^{d-1})\]
+on the space of local operators in any TQFT. We will now investigate operations coming from cobordisms ``with no topology''.
+
+\begin{defn}
+Fix a dimension $d$.
+\begin{itemize}
+\item \[\bE_d(k) = \Emb^{fr}(D^{\coprod k}, D)\]
+is the space of (smooth) framed embeddings of $k$ $d$-dimensional open disks $D$ into a given disk $D$.
+
+\item \[\bE^{fr}_d(k) = \Emb(D^{\coprod k}, D)\]
+is the space of (smooth) oriented embeddings of $k$ $d$-dimensional open disks $D$ into a given disk $D$.
+\end{itemize}
+\end{defn}
+
+There are natural composition maps which make $\bE_d$ and $\bE^{fr}_d$ into operads. In particular, we can talk about their algebras.
+
+\begin{example}
+The operads $\bE_1$ and $\bE^{fr}_1$ are both equivalent to the associative operad.
+\end{example}
+
+\begin{example}
+There is a natural action of $\SO(d)$ on $\bE_d$, so that a $\bE^{fr}_d$-algebra is an $\bE_d$-algebra equipped with a compatible $\SO(d)$-action.
+\end{example}
+
+Given an embedding $D^{\coprod k}\hookrightarrow D$ we obtain a cobordism from $(S^{d-1})^{\coprod k}$ to $S^{d-1}$ by removing the interiors of the embedded disks. In particular, we obtain a natural map
+\[\rC_\bullet(\bE^{fr}_d(k); \C)\otimes_\C Z(S^{d-1})^{\otimes k}\longrightarrow Z(S^{d-1})\]
+for any oriented TQFT. Similarly, if $Z$ is a framed TQFT we get a natural map
+\[\rC_\bullet(\bE_d(k); \C)\otimes_\C Z(S^{d-1})^{\otimes k}\longrightarrow Z(S^{d-1}).\]
+Both maps are compatible with compositions and we obtain the following result:
+\begin{itemize}
+\item If $Z$ is a framed TQFT, the chain complex of local operators $Z(S^{d-1})$ is an $\bE_d$-algebra.
+\item If $Z$ is an oriented TQFT, the chain complex of local operators $Z(S^{d-1})$ is a framed $\bE_d$-algebra.
+\end{itemize}
+
+Up to homotopy the spaces of embeddings may be identified as follows.
+
+\begin{prop}
+There are homotopy equivalences
+\[\bE_d(k)\cong \Conf_k(\R^d),\qquad \bE^{fr}_d(k)\cong \SO(d)^k\times \Conf_k(\R^d),\]
+where $\Conf_k(\R^d)$ is the configuration space of $k$ distinct ordered points in $\R^d$.
+\end{prop}
+
+Using the above description one can show the following:
+\begin{itemize}
+\item An $\bE_2$-algebra in categories is a braided monoidal category.
+\item An $\bE^{fr}_2$-algebra in categories is a balanced monoidal category, i.e. there is an extra automorphism of the identity functor, the \emph{balancing} $\theta$, which satisfies
+\[\theta_{x\otimes y} = \sigma_{y, x}\circ \sigma_{x, y}\circ (\theta_x\otimes \theta_y).\]
+\end{itemize}
+
+So, the category of line operators in a 3-dimensional TQFT is a balanced monoidal category.
+
+\section{$\bP_d$-algebras}
+
+To describe $\bE_d$-algebras in chain complexes, let us first introduce a related notion.
+
+\begin{defn}
+A \defterm{$\bP_d$-algebra} is a commutative dg algebra $A$ equipped with a bracket of cohomological degree $1-d$ (inducing a Lie structure on $A[d-1]$) satisfying the Leibniz rule
+\[\{a, bc\} = \{a, b\}c + (-1)^{|b||c|}\{a, c\}b\]
+for $a,b,c\in A$.
+\end{defn}
+
+\begin{remark}
+A $\bP_2$-algebra is known as a \emph{Gerstenhaber algebra}.
+\end{remark}
+
+Let $\bP_d(k)$ be the vector space of all operations $A^{\otimes k}\rightarrow A$ on a $\bP_d$-algebra. We can formalize it as follows: define $\bP_d(k)$ to be the subspace of the free $\bP_d$-algebra on degree 0 variables $x_1, \dots, x_k$ consisting of expressions where each $x_i$ appears exactly once. For instance:
+\begin{itemize}
+\item $\bP_d(1)\cong \C$ spanned by the identity map $A\rightarrow A$.
+\item $\bP_d(2)\cong \C\oplus \C[d-1]$ spanned by the commutative multiplication $m\colon A\otimes A\rightarrow A$ and $\{-, -\}\colon A\otimes A\rightarrow A[1-d]$ by the Poisson bracket.
+\end{itemize}
+
+We have the following claim.
+
+\begin{defn}
+Suppose $d\geq 2$. Then there is an isomorphism of graded vector spaces $\rH_\bullet(\bE_d(k); \C)\cong \bP_d(k)$.
+\end{defn}
+
+\begin{remark}
+In fact, both $\bE_d$ and $\bP_d$ are operads and there is an equivalence $\rC_\bullet(\bE_d; \C)\cong \bP_d$ of graded linear operads.
+\end{remark}
+
+As a corollary, given an $\bE_d$-algebra $A$, its homology $\rH_\bullet(A)$ has a natural structure of a $\bP_d$-algebra.
+
+\begin{example}
+Let $Z$ be a 3d TQFT. Then the cohomology of the space of local operators $\rH^\bullet(Z(S^2))$ carries a graded commutative multiplication as well as Poisson bracket of degree $-2$.
+\end{example}
+
+\section{$\Omega$-deformation}
+
+We will now explain an important construction with $\bE_d$-operads which is known in physics as the procedure of $\Omega$-deformation.
+
+Consider the $\bE_d$-operad equipped with its natural $\SO(d)$-action. There is a natural inclusion of operads $\bE_{d-2}\hookrightarrow \bE_d$ which is $\SO(d-2)\times \SO(2)$-equivariant, where the $\SO(2)$-action on the left is trivial.
+
+\begin{thm}
+The inclusion of operads $\bE_{d-2}\hookrightarrow \bE_d$ realizes $\bE_{d-2}$ as the space of fixed points of the $\SO(2)$-action on $\bE_d$.
+\label{thm:Enfixedpoints}
+\end{thm}
+
+To state an important corollary, let us first recall a few basics of equivariant localization. Given a space $X$ with an action of a topological group $G$ we may consider equivariant homology $\rH^G_\bullet(X)$ and cohomology $\rH^\bullet_G(X)$ which are both modules over $\rH^\bullet_G(\pt)=\rH^\bullet(\B G)$.
+
+\begin{example}
+We have $\B\SO(2)=\CP^\infty$, so $\rH^\bullet(\B\SO(2))=\C[\epsilon]$, where $\deg(\epsilon)=2$.
+\end{example}
+
+\begin{thm}[Equivariant localization]
+Let $G$ be a topological group. Let $Y$ be a space with a $G$-action. Let $X$ be a topological space equipped with a trivial $G$-action and a $G$-equivariant map $X\rightarrow Y$ which realizes $X$ as the space of fixed points of the $G$-action on $Y$. Then the induced map
+\[\rH^G_\bullet(X)\otimes_{\C[\epsilon]} \C(\epsilon) \longrightarrow \rH^G_\bullet(Y)\otimes_{\C[\epsilon]} \C(\epsilon)\]
+is an isomorphism.
+\end{thm}
+
+Combining the theory of equivariant localization and \cref{thm:Enfixedpoints} we get the following.
+
+\begin{thm}
+Let $A$ be a framed $\bE_d$-algebra. Consider the induced $\SO(2)\subset\SO(d)$-action on $A$. Then $A^{\SO(2)}\otimes_{\C[\epsilon]} \C(\epsilon)$ is a framed $\bE_{d-2}$-algebra.
+\end{thm}
+
+\begin{example}
+Let $Z$ be a 3d TQFT and consider the framed $\bE_3$-algebra structure on the space of local operators $Z(S^2)$. Recall that its cohomology $\rH^\bullet(Z(S^2))$ carries a natural (graded) Poisson structure. The equivariant localization
+\[\rH^\bullet_{\SO(2)}(Z(S^2))\otimes_{\C[\epsilon]} \C(\epsilon)\]
+is an associative algebra which provides a deformation quantization of $\rH^\bullet(Z(S^2))$ (with the quantization parameter being $\epsilon$).
+\end{example}
+
+\section{Swiss-cheese algebras}
+
+I will end this lecture by describing algebraic structures appearing in TQFTs with boundary conditions.
+
+Let $Z$ be a $d$-dimensional TQFT with a chosen boundary condition $Z^\partial$. We can extract the following kinds of algebras:
+\begin{itemize}
+\item The space of \emph{bulk local operators} in $Z$, i.e.
+\[A = Z(S^{d-1}),\]
+carries the structure of a framed $\bE_d$-algebra.
+
+\item The space of \emph{boundary local operators}, i.e.
+\[B = Z(D^{d-1})(Z^\partial(S^{d-2})),\]
+carries the structure of a framed $\bE_{d-1}$-algebra. Namely, let $H$ be the $d$-dimensional half-ball. Consider the space
+\[\Emb^\partial(H^{\coprod k}, H)\]
+of oriented embeddings of $k$ $d$-dimensional half-balls into a single one so that the boundaries are embedded into the boundaries. Retracting the half-ball to its boundary (a $(d-1)$-dimensional ball) identifies this space with $\bE^{fr}_{d-1}$.
+
+\item In addition, there is an action of $A$ on $B$ as follows. Let $D$ be a $d$-dimensional ball and $H$ a $d$-dimensional half-ball. Any embedding $D^{\coprod l}\coprod H^{\coprod k}\hookrightarrow H$ (so that the boundaries of the half-balls are embedded in the boundary of the bigger half-ball) gives rise to an operation
+\[A^{\otimes l}\otimes B^{\otimes k}\longrightarrow B.\]
+\end{itemize}
+
+The pair $(A, B)$ together with the operations described above is known as a $d$-dimensional \defterm{Swiss-cheese algebra}. We will encounter the following manifestation of this structure.
+
+\begin{example}
+Let $Z$ be a 3d TQFT with a boundary condition $Z^\partial$. Let $A$ be the $\bE_3$-algebra of bulk local operators and $B$ the $\bE_2$-algebra of boundary local operators. $A$ carries a degree $-2$ Poisson structure. There is a map of graded commutative algebras $A\rightarrow B$ and the induced map $\Spec B\rightarrow \Spec A$ is coisotropic.
+\end{example}
+
+\begin{remark}
+There is a homotopy notion of a coisotropic submanifold which is precisely defined in terms of a Swiss-cheese algebra structure.
+\end{remark}
+
+
+Recall that $\bE_n(k)$ is homotopy equivalent to $\Conf_k(\R^n)$, the configuration space of $k$ distinct points in $\R^n$.
+
+Recall that a $\bP_n$-algebra is a dg commutative algebra $A$ equipped with a bracket $\{-, -\}$ of cohomological degree $1-n$ (inducing a Lie structure on $A[n-1]$) satisfying the relation $\{a, bc\} = \{a, b\}c + (-1)^{|b||c|}\{a, c\}b$. Let $\bP_n(k)$ be the subspace of the free $\bP_n$-algebra on degree $0$ variables $x_1, \dots, x_k$ consisting of expressions where each $x_i$ appears exactly once. For instance, $\{\{x_1, x_2\}, \{x_3, x_4\}\}$ is an element of $\bP_n(4)$ of cohomological degree $3(1-n)$.
+
+\section{Exercises}
+\begin{exercise}
+Consider the map $\Conf_k(\R^n)\rightarrow \Conf_{k-1}(\R^n)$ given by forgetting the last point. Show that its fiber $F_k$ is homotopy equivalent to a wedge of $(k-1)$ spheres $S^{n-1}$.
+\end{exercise}
+
+\begin{exercise}
+The Leray--Serre spectral sequence for the fibration $F_k\hookrightarrow \Conf_k(\R^n)\rightarrow \Conf_{k-1}(\R^n)$ degenerates (using the Leray--Hirsch theorem), so that one may identify
+\[\rH_\bullet(\Conf_k(\R^n);\Q)\cong \rH_\bullet(\Conf_{k-1}(\R^n);\Q)\otimes \rH_\bullet(F_k;\Q).\]
+Find $\rH_\bullet(\bE_n(k);\Q)$ for $k=1,2,3$.
+\end{exercise}
+
+\begin{exercise}
+Describe the graded vector space $\bP_n(k)$ for $k=1,2,3$ and find an isomorphism
+\[\rH_\bullet(\bE_n(k);\Q)\cong \bP_n(k)\]
+for $n\geq 2$.
+\end{exercise}
+
+\begin{exercise}
+(*) Consider the $S_2$-action on $\bE_2(2)\sim S^1$ given by reflection around the origin. Let $\cC$ be a category. Show that an $S_2$-equivariant map
+\[S^1\times \cC^{\times 2}\longrightarrow \cC\]
+is the same as a pair $(\otimes, \sigma)$ consisting of a functor $\otimes\colon \cC\times \cC\rightarrow \cC$ as well as a natural isomorphism
+\[\sigma_{x, y}\colon x\otimes y\xrightarrow{\sim} y\otimes x.\]
+\end{exercise}
+
+\end{document}
