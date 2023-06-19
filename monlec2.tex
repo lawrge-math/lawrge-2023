@@ -1,129 +1,8 @@
 % !TeX root = LAWRGe2023Notes.tex
 
-\documentclass[10pt]{amsart}
-
-\newcommand{\B}{\mathrm{B}}
-\newcommand{\C}{\mathbf{C}}
-\newcommand{\rC}{\mathrm{C}}
-\newcommand{\CP}{\mathbf{CP}}
-\newcommand{\bE}{\mathbb{E}}
-\newcommand{\rH}{\mathrm{H}}
-\newcommand{\cO}{\mathcal{O}}
-\newcommand{\bP}{\mathbb{P}}
-\newcommand{\R}{\mathbf{R}}
-
-\newcommand{\Conf}{\mathrm{Conf}}
-\newcommand{\Emb}{\mathrm{Emb}}
-\newcommand{\pt}{\mathrm{pt}}
-\newcommand{\SO}{\mathrm{SO}}
-
-\DeclareMathOperator{\Spec}{Spec}
-
-\newcommand{\defterm}[1]{\textbf{\emph{#1}}}
-
-\usepackage{tikz}
-\usepackage{bbm}
-\usetikzlibrary{3d,arrows,calc,positioning,decorations.pathreplacing,matrix}
-
-\usepackage{calligra,mathrsfs}
-\usepackage[all]{xy}
-\usepackage{float, comment}
-\usepackage{mathtools}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amssymb}
-\usepackage{amsbsy}
-\usepackage{amstext}
-\usepackage{amsopn}
-\usepackage[mathscr]{eucal}
-\usepackage{enumerate}
-\usepackage{xcolor}
-\usepackage{graphicx}
-\usepackage{scalerel}
-\usepackage{microtype}
-\usepackage[margin=1in,marginparwidth=0.8in, marginparsep=0.1in]{geometry}
-\renewcommand{\baselinestretch}{1.2}
-\usepackage[bookmarks=true, bookmarksopen=true, bookmarksdepth=3,bookmarksopenlevel=2, colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, menucolor=blue, urlcolor=blue]{hyperref}
-\usepackage{xspace}
-
-\DeclareMathOperator{\cHom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
-
-\theoremstyle{definition}
-\newtheorem{exercise}{Exercise}
-\newtheorem*{Solution}{Solution}
-
-\def\H{{H}}
-\def\mod{{\rm{mod}}}
-\def\res{{\rm{res}}}
-\def\cl{{\mathrm{cl}}}
-\def\cn{\leq 0}
-\def\uk{\underline{k}}
-\def\ti{{\tilde{i}}}
-\def\tj{{\tilde{j}}}
-\def\tm{{\tilde{m}}}
-\def\tn{{\tilde{n}}}
-\def\tp{{\tilde{p}}}
-\def\tq{{\tilde{q}}}
-\def\ts{{\tilde{s}}}
-\def\n{{\bf{n}}}
-\def\bL{{\mathbb{L}}}
-\def\ua{{\underline{a}}}
-\def\ub{{\underline{b}}}
-\def\ue{{\underline{e}}}
-\def\uj{{\underline{j}}}
-\def\ux{{\underline{x}}}
-\def\uy{{\underline{y}}}
-\def\la{\langle}
-\def\ra{\rangle}
-\def\ov{\overline}
-\def\ul{\underline}
-\def\wt{\widetilde}
-
-\def\ba{\begin{align}}
-\def\ea{\end{align}}
-
-\def\be{\begin{equation}}
-\def\ee{\end{equation}}
-
-\def\bc{\begin{center}}
-\def\ec{\end{center}}
-
-\def\bp{\begin{proof}}
-\def\ep{\end{proof}}
-
-\def\bi{\begin{itemize}}
-\def\ei{\end{itemize}}
-
-\def\ben{\begin{enumerate}}
-\def\een{\end{enumerate}}
-
-\def\bt{\begin{tabular}}
-\def\et{\end{tabular}}
-
-\def\i{\item}
-
-\def\lra{\longrightarrow}
-\def\Lra{\Longrightarrow}
-\def\iff{\Leftrightarrow}
-
-\newcommand{\Z}{\mathbf{Z}}
-\newcommand{\cA}{\mathcal{A}}
-\newcommand{\cB}{\mathcal{B}}
-\newcommand{\cC}{\mathcal{C}}
-\newcommand{\Q}{\mathbf{Q}}
-\newcommand{\arrtip}{latex'}
-
-\theoremstyle{definition}
-\newtheorem{defn}[thm]{Definition}
-
-\begin{document}
-\title{Algebraic structures in TQFTs}
-\author{Pavel Safronov}
-\maketitle
-
 In this lecture $Z$ denotes some $d$-dimensional TQFT. For simplicity I will assume that it is fully extended, but many statements make sense with partially extended TQFTs. I will assume that the TQFT is valued in the ($\infty$-)category of chain complexes.
 
-\section{Local and line operators}
+\subsection{Local and line operators}
 
 Besides computing partition functions, in physics one is often interested in computing correlation functions of some local operators. Let us introduce them using the following heuristic idea.
 
@@ -156,7 +35,7 @@ Let $Z$ be a $d$-dimensional TQFT.
 \end{itemize}
 \end{defn}
 
-\section{$\bE_d$-algebras}
+\subsection{$\bE_d$-algebras}
 
 Our next goal is to explain algebraic structures present on the space of local and line operators. Given any cobordism $W$ from $k$ copies of $S^{d-1}$ to $S^{d-1}$ we get an algebraic operation
 \[Z(W)\colon Z(S^{d-1})^{\otimes k}\longrightarrow Z(S^{d-1})\]
@@ -210,7 +89,7 @@ Using the above description one can show the following:
 
 So, the category of line operators in a 3-dimensional TQFT is a balanced monoidal category.
 
-\section{$\bP_d$-algebras}
+\subsection{$\bP_d$-algebras}
 
 To describe $\bE_d$-algebras in chain complexes, let us first introduce a related notion.
 
@@ -246,7 +125,7 @@ As a corollary, given an $\bE_d$-algebra $A$, its homology $\rH_\bullet(A)$ has 
 Let $Z$ be a 3d TQFT. Then the cohomology of the space of local operators $\rH^\bullet(Z(S^2))$ carries a graded commutative multiplication as well as Poisson bracket of degree $-2$.
 \end{example}
 
-\section{$\Omega$-deformation}
+\subsection{$\Omega$-deformation}
 
 We will now explain an important construction with $\bE_d$-operads which is known in physics as the procedure of $\Omega$-deformation.
 
@@ -269,7 +148,7 @@ Let $G$ be a topological group. Let $Y$ be a space with a $G$-action. Let $X$ be
 is an isomorphism.
 \end{thm}
 
-Combining the theory of equivariant localization and \cref{thm:Enfixedpoints} we get the following.
+Combining the theory of equivariant localization and \ref{thm:Enfixedpoints} we get the following.
 
 \begin{thm}
 Let $A$ be a framed $\bE_d$-algebra. Consider the induced $\SO(2)\subset\SO(d)$-action on $A$. Then $A^{\SO(2)}\otimes_{\C[\epsilon]} \C(\epsilon)$ is a framed $\bE_{d-2}$-algebra.
@@ -281,7 +160,7 @@ Let $Z$ be a 3d TQFT and consider the framed $\bE_3$-algebra structure on the sp
 is an associative algebra which provides a deformation quantization of $\rH^\bullet(Z(S^2))$ (with the quantization parameter being $\epsilon$).
 \end{example}
 
-\section{Swiss-cheese algebras}
+\subsection{Swiss-cheese algebras}
 
 I will end this lecture by describing algebraic structures appearing in TQFTs with boundary conditions.
 
@@ -316,7 +195,7 @@ Recall that $\bE_n(k)$ is homotopy equivalent to $\Conf_k(\R^n)$, the configurat
 
 Recall that a $\bP_n$-algebra is a dg commutative algebra $A$ equipped with a bracket $\{-, -\}$ of cohomological degree $1-n$ (inducing a Lie structure on $A[n-1]$) satisfying the relation $\{a, bc\} = \{a, b\}c + (-1)^{|b||c|}\{a, c\}b$. Let $\bP_n(k)$ be the subspace of the free $\bP_n$-algebra on degree $0$ variables $x_1, \dots, x_k$ consisting of expressions where each $x_i$ appears exactly once. For instance, $\{\{x_1, x_2\}, \{x_3, x_4\}\}$ is an element of $\bP_n(4)$ of cohomological degree $3(1-n)$.
 
-\section{Exercises}
+\subsection{Exercises}
 \begin{exercise}
 Consider the map $\Conf_k(\R^n)\rightarrow \Conf_{k-1}(\R^n)$ given by forgetting the last point. Show that its fiber $F_k$ is homotopy equivalent to a wedge of $(k-1)$ spheres $S^{n-1}$.
 \end{exercise}
@@ -340,4 +219,3 @@ is the same as a pair $(\otimes, \sigma)$ consisting of a functor $\otimes\colon
 \[\sigma_{x, y}\colon x\otimes y\xrightarrow{\sim} y\otimes x.\]
 \end{exercise}
 
-\end{document}
