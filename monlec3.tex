@@ -1,3 +1,110 @@
 % !TeX root = LAWRGe2023Notes.tex
 
-Hey this happened on Monday at 9 
+
+\subsection{Supersymmetry}
+My goals for this talk are to give an answer to the questions ``what is supersymmetry?'' and ``what is a topological twist?''.
+
+We're going to be working in the wide world of models for classical and quantum field theory.  I won't explain in detail what a quantum field theory is, and there are many different ways of modelling them, but part of the data will be a vector space (either of states, or of observables).  In fact, usually a little more, a cochain complex $(\mathcal E, \mathrm{d})$.  We can ask for $\mathcal E$ to be acted upon by some Lie algebra $\mathfrak{g}$ of symmetries.
+\begin{example} If we're studying field theory on $\RR^4$, we might ask for an action of the Lorentz algebra $\so(1,3)$.  Or of the associated Poincar\'e algebra $\mathfrak{iso}(1,3) = \so(1,3) \ltimes \RR^4$. \end{example}
+
+The term \emph{supersymmetry} is used for an enhancement of this sort of thing, where the Poincar\'e algebra is replaced by a $\ZZ/2\ZZ$-graded extension thereof.
+\begin{Definition}
+	A \emph{super Lie algebra} is a $\ZZ/2\ZZ$-graded vector space $\mathfrak{g}$ equipped with a Lie bracket that is graded skew-symmetric:
+	\[[X,Y] = (-1)^{|X||Y|+1}[Y,X]\]
+	and satisfies the graded Jacobi identity
+	\[(-1)^{|X||Z|}[X,[Y,Z]] + (-1)^{|Y||X|}[Y,[Z,X]] + (-1)^{|Z||Y|}[Z,[X,Y]] = 0.\]
+	here $|X| \in \ZZ/2\ZZ$ denotes the degree of an element $X \in \mathfrak{g}$.
+\end{Definition}
+We will now define the super Lie algebras where supersymmetries live.  For simplicity we will focus on the \emph{complexified} Lie algebra of supersymmetries, which will be an extension of $\mathfrak{iso}(n,\CC) = \mathfrak{iso}(p,q) \otimes_\RR \CC$ for any $p+q=n$.
+\begin{Definition}
+	A \emph{super Poincar\'e algebra} in dimension $n$ is a super Lie algebra with underlying super vector space
+	\[\mathfrak{siso}(n|\Sigma) = \mathfrak{iso}(n,\CC) \oplus \Pi \Sigma\]
+	(where $\Pi$ indicates an odd degree shift), where $\Sigma$ is a \emph{spinorial} representation of $\so(n,\CC)$ (meaning all its irreducible summands are (semi)spin representations of $\so(n,\CC)$), with an additional bracket given by a non-degenerate equivariant map $\Gamma \colon \sym^2(\Sigma) \to \CC^n$.
+\end{Definition}
+
+\begin{remark}
+	We could of course also study the real forms of these complex super Lie algebras, which will depend on a choice of signature.  We won't need these real forms this week.
+\end{remark}
+
+So we can now say what a supersymmetric field theory is (subject to the caveat that we haven't exactly defined a field theory, only stated that its structure should include a cochain complex!)
+\begin{Definition}
+	Suppose that $(\mathcal E,\mathrm{d})$ is a classical field theory on $\RR^n$ with an action of the algebra $\mathfrak{iso}(n,\CC)$ of isometries.  We say $(\mathcal E,\mathrm{d})$ is \emph{supersymmetric} with supersymmetry $\Sigma$ if $\mathcal E$ is equipped with an additional $\ZZ/2\ZZ$-grading (as well as its original $\ZZ$-grading) and the $\mathfrak{iso}(n,\CC)$ lifts to an action of the super Lie algebra $\mathfrak{siso}(n|\Sigma)$.
+\end{Definition}
+
+You might notice that we typically use slightly different terminology.  We don't usually talk about ``supersymmetry $\Sigma$'', we usually say something like ``$\mathcal N=2$ supersymmetry'' or ``$\mathcal N=4$ supersymmetry'' or $\mathcal N=(2,2)$ supersymmetry''.  We'll explain this now: it's because the possible odd terms $\Sigma$ occuring in the supersymmetry algebra are generally highly constrained.  They are given as sums of irreducible spinorial representations of which there are always either one or two.  The bracket $\Gamma$ of odd elements is also usually uniquely determined, maybe up to an overall scale.  This is why it didn't appear in our notation.
+
+\begin{example}[3d supersymmetry]
+	The key example this week is supersymmetry in 3d, so let's do this example first.  As I mentioned, for simplicity I'm going to complexify my super Poincar\'e algebras, and the vector spaces $\mathcal E$ on which they act, that way I won't have to worry about a choice of signature.
+	
+	Recall that there is an exceptional isomorphism $\spin(3,\CC) \cong \SL(2,\CC)$ (or perhaps more familiarly, in Euclidean signature $\spin(3) \cong \SU(2)$).  The finite-dimensional irreducible representations of $\SL(2,\CC)$ or its Lie algebra $\sl(2,\CC)$ are given as $\sym^k(V)$, where $V$ is the 2d defining representation.  In particular, the 3d defining representation of $\so(3,\CC)$ is isomorphic to $\sym^2(V)$.
+	
+	The spin representation is, under this isomorphism, $V$ itself, so there are potentially super Poincar\'e algebras with $\Sigma = V^k = V \otimes W$ where $W$ is a $k$-dimensional vector space, for $k \ge 1$.  To work out the possible brackets, we need an equivariant map
+	\[\sym^2(\Sigma) = \sym^2(V \otimes W) = \sym^2(V) \otimes\sym^2(W) \oplus \wedge^2(V) \otimes \wedge^2(W) \to \sym^2(V).\]
+	So pretty clearly we get such a map for any linear map $g \colon \sym^2(W) \to \CC$, and non-degeneracy of the bracket means $g$ is precisely an inner product on $W$.
+	
+\end{example}
+
+This example also illustrates an important concept: there are symmetries of the super Poincar\'e algebra in dimension 3 coming from elements of $\mathrm O(W)$.  These are called \emph{R-symmetries}.
+
+\begin{Definition}
+	The group $G_R$ of \emph{R-symmetries} of a super Poincar\'e algebra is the group of outer automorphisms of $\mathfrak{siso}(n|\Sigma)$ that act trivially on the even part.  Write $\mathfrak{g}_R$ for its Lie algebra.
+\end{Definition}
+
+\begin{remark}
+	If we like we can form the extension $\mathfrak{g}_R \ltimes \mathfrak{siso}(n|\Sigma)$ by the algebra of R-symmetries (or a subalgebra thereof).  Such super Lie algebras are sometimes more generally referred to as ``supersymmetry algebras''.
+\end{remark}
+
+\subsection{Twisting}
+To conclude, I'd like to talk about the concept of ``twisting''.  Suppose $Q \in \mathfrak{siso}(n|\Sigma)$ is an odd element such that $[Q,Q]=0$.  If $\mathcal E$ is a supersymmetric theory, we can use such a ``square-zero'' element $Q$ to define a deformation to a new theory.
+\begin{Definition}
+	Let $(\mathcal E,\mathrm{d})$ be a supersymmetric theory, and write $\alpha$ for the action of $\mathfrak{siso}(n|\Sigma)$ on $\mathcal E$.  The \emph{twist} of $(\mathcal E,\mathrm{d})$ by a square-zero element $Q$ is the theory $(\mathcal E_!,\mathrm{d}_Q) = (E, \mathrm{d} + \alpha(Q))$.
+\end{Definition}
+The square-zero condition is needed to ensure that $\mathrm{d}_Q$ is indeed a differential.  Notice that $\mathrm{d}_Q$ is not of homogeneous degree anymore, so in general $(\mathcal E, \mathrm{d} + \alpha(Q))$ is only a $\ZZ/2\ZZ$-graded complex (though in many examples it is possible to cook up a $\ZZ$-grading after all!).
+
+So, if we are studying twists, it is natural to ask exactly what sorts of elements $Q$ we can twist by!  Those elements satisfying the quadratic equation $[Q,Q]$ cut out a quadric subvariety of $\Sigma$.
+\begin{Definition}
+	The \emph{nilpotence variety} associated to a super Poincar\'e algebra with odd summand $\Sigma$ is the subvariety
+	\[\mathcal N\mathrm{ilp} = \{Q \colon [Q,Q] = 0\} \subseteq\Sigma.\]
+	Notice that $\mathcal N\mathrm{ilp}$ is invariant under the rescaling action of $\CC^\times$, by $Q \mapsto \lambda Q$.  So we can instead study the projectivization of $\mathcal N\mathrm{ilp}$:
+	\[\mathbb P \mathcal N \mathrm{ilp}= (\mathcal N\mathrm{ilp} \backslash \{0\})/\CC^\times \subseteq\mathbb P \Sigma.\]
+\end{Definition}
+
+You'll work through an example in detail during the exercise session shortly: the example of 3d $\mathcal N=4$ supersymmetry that is most relevant to this week's lectures.
+
+\subsection{Twisting and Translation Invariance}
+Let us conclude by talking about what twisting ``buys us''.  In what sense are twists of supersymmetric theories more mathematically tractable?  Well, in many cases, they are in fact topological!  Here's the idea.
+
+Suppose that our field theory $\mathcal E$ can be equipped with a Lie bracket for which the action of $\mathfrak{siso}(n|\Sigma)$ is \emph{inner}.  In other words, suppose that there is a Lie algebra map
+\[H \colon \mathfrak{siso}(n|\Sigma) \to \mathcal E\]
+so that the action of $X \in \mathfrak{siso}(n|\Sigma)$ coincides with the Lie bracket with $H(X) \in \mathcal E$ (these elements $H(X)$ are the \emph{Hamiltonians} of the symmetries $X$).  What happens in the twist $\mathcal E_Q$?  Well, for any $Q$-exact symmetry $X = [Q,Q']$, the Hamiltonian $H(X)$ is \emph{cohomologically trivial} in the twist by $Q$.
+
+The image $\mathfrak b_Q$ of $[Q,-]$ is a subalgebra of the abelian Lie algebra $\CC^n$ of translations.  So this is saying that certain translations act cohomologically trivially in the twisted theory.  If $\mathfrak b_Q = \CC^n$ contains \emph{all} translations then we say $Q$ is a \emph{topological supercharge}.  It turns out, that under some fairly mild assumptions, the twist by a topological supercharge is always a topological field theory!
+
+In the exercise session you will show that there are two inequivalent families of topological supercharges in the 3d $\mathcal N=4$ nilpotence variety.
+
+\subsection{Exercises}
+In this exercise we will learn about twists in a three-dimensional example. Recall that $\spin(3, \CC) \cong \SL(2, \CC)$. Let $S$ be the two-dimensional spin representation of $\spin(3, \CC)$ (i.e. the defining representation of $\SL(2, \CC)$) and $V$ the three-dimensional vector representation (i.e. the adjoint representation of $\SL(2, \CC)$). There is an isomorphism $\sym^2(S)\cong V$ of $\spin(3, \CC)$-representations.
+
+Spinorial representation take the form $\Sigma = S\otimes W$, where $W$ is a complex vector space equipped with a nondegenerate symmetric bilinear pairing $g$. The super Poincar\'e Lie algebra is
+\[\mathfrak{siso}(3|\Sigma) = \mathfrak{iso}(3,\CC)\oplus \Pi \Sigma\]
+with the only nonobvious bracket $\Gamma\colon \sym^2(\Sigma)\rightarrow V$ defined using $g$ and the isomorphism $\sym^2(S)\cong V$.  The R-symmetry group here is the group $\mathrm O(W)$ acting on $W$.
+
+Consider the case $\dim W = 4$, i.e. we are working with 3d $\mathcal N=4$ supersymmetry.
+
+\begin{enumerate}
+	\item For a basis $\{Q_1,Q_2\}$ of $S$ let $Q=Q_1\otimes u + Q_2\otimes v\in\Sigma$. Give conditions under which $Q$ lies in the nilpotence variety $\mathcal N$.
+	
+	\item What are the $\Spin(3, \CC) \times \SO(W)$-orbits in the nilpotence variety $\mathcal N$ and its projectivization $\mathbb {P}\mathcal N$? (\emph{Hint}: there are 3 orbits in the latter case.)
+	
+	\item Let $\mathfrak b_Q\subset V$ be the image of $\Gamma(Q, -)\colon \Sigma\rightarrow V$. Find the dimension of $\mathfrak b_Q$ for an element $Q$ in each orbit.
+	
+	\item (*) Let $\mathfrak z_Q\subset \mathfrak{siso}(3|\Sigma)$ be the subalgebra of elements commuting with $Q$. This subalgebra has a nice interpretation: it consists of those symmetries that ``survive'' the twist, i.e. that continue to act on the twisted theory. Find this subalgebra for each orbit.
+\end{enumerate}
+
+\begin{remark}
+	The moduli space $\mathrm{OGr}(1, 4)$ of isotropic lines in $W$ is a nondegenerate quadric surface in $\mathbb P(W) \cong \mathbb{CP}^3$ and therefore is isomorphic to $\mathbb{CP}^1\times\mathbb{CP}^1$.
+\end{remark}
+
+\begin{remark}
+	The moduli space $\mathrm{OGr}(2, 4)$ of isotropic planes in $W$ is isomorphic to the moduli space of lines in $\mathrm{OGr}(1, 4)$ by the map sending an isotropic plane $\Pi \subseteq W$ to the family of lines $L \subseteq\Pi$, which are automatically all isotropic. This moduli space of lines, and hence the moduli space $\mathrm{OGr}(2,4)$, is isomorphic to $\mathbb{CP}^1\sqcup\mathbb{CP}^1$.  Given a point $P\in\mathbb{CP}^1$ there are two lines $P\times \mathbb{CP}^1\subset \mathrm{OGr}(1, 4)$ and $\mathbb{CP}^1\times P\subset \mathrm{OGr}(1, 4)$.
+\end{remark}
