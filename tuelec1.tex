@@ -1,3 +1,256 @@
 % !TeX root = LAWRGe2023Notes.tex
 
-Hey this happened on Monday at 9 
+%\title{Symplectic vortex equations and 3-dimensional Seiberg--Witten equations}
+%\author{Pavel Safronov}
+%\maketitle
+
+The goal of this talk is to describe differential equations that appear in 2d and 3d A-models:
+\begin{itemize}
+\item Given a K\"ahler manifold $M$ equipped with a Hamiltonian action of a Lie group $G$, the partition function $Z_{2dA, M/\!/G}(\Sigma)$ on a Riemann surface $\Sigma$ counts solutions of the symplectic vortex equations on $\Sigma$.
+
+\item Given a hyperK\"ahler manifold $M$ equipped with a triHamiltonian action of a Lie group $G$, the partition function $Z_{3dA, M/\!/\!/G}(N)$ on a 3-manifold $N$ equipped with a $\Spin^c$ structure counts solutions of the nonlinear Seiberg--Witten equations on $N$.
+\end{itemize}
+
+For concreteness in this talk we restrict to the case of $M$ being a vector space.
+
+\subsection{2d equations}
+
+In this section $\Sigma$ denotes a Riemann surface.
+
+\subsubsection{Cauchy--Riemann equations}
+
+Let $V$ be a complex vector space and $L\rightarrow \Sigma$ a Hermitian line bundle. It carries a compatible unitary connection.
+
+\begin{defn}
+The \defterm{Cauchy--Riemann equation} is the equation
+\[\overline{\partial} \phi = 0\in\Omega^{0, 1}(\Sigma, L\otimes V)\]
+for a smooth section $\phi$ of $L\otimes V$.
+\end{defn}
+
+We will be interested in the moduli space of solutions of this equation. In the linear case we are considering here it is a chain complex.
+
+\begin{prop}
+The operator $\overline{\partial}\colon \Omega^0(\Sigma, L\otimes V)\rightarrow \Omega^{0, 1}(\Sigma, L\otimes V)$ is elliptic. Assuming $\Sigma$ is compact, its index is
+\[\ind_\C(\overline{\partial}) = ((1-g) + \deg(L))\dim_\C V.\]
+\end{prop}
+
+\begin{remark}
+In the above we are working with complex elliptic operators. Any complex elliptic operator has an orientation as a real elliptic operator and the index of the corresponding real elliptic operator is $\ind_\R=2\ind_\C$.
+\end{remark}
+
+\begin{remark}
+If $L$ is a square root of the canonical bundle (i.e. a theta characteristic), we have $\deg(L) = g-1$. So, in this case the index is zero, irrespectively of the dimension of $V$ and the genus of $\Sigma$.
+\end{remark}
+
+\subsubsection{Flat connections}
+
+Let $G$ be a compact connected Lie group. Let $G_\C$ be its complexification.
+
+\begin{defn}
+The \defterm{flatness equations} are
+\[F_\nabla = 0\in\Omega^2(\Sigma; \ad P),\]
+where $P\rightarrow \Sigma$ is a principal $G$-bundle equipped with a connection $\nabla$ and $F_\nabla$ is its curvature. We consider the solutions modulo gauge transformations.
+\end{defn}
+
+The flatness equation is nonlinear. Its linearization at a given flat connection $\nabla$ is given by
+\[\nabla\colon \Omega^1(\Sigma; \ad P)\longrightarrow \Omega^2(\Sigma; \ad P).\]
+Incorporating linearized gauge transformations, we obtain a three-term chain complex concentrated in degrees $-1, 0, 1$.
+
+\begin{prop}
+The chain complex
+\[\Omega^0(\Sigma; \ad P)\xrightarrow{\nabla} \Omega^1(\Sigma; \ad P)\xrightarrow{\nabla} \Omega^2(\Sigma; \ad P)\]
+is elliptic. If $\Sigma$ is compact, its index is
+\[\ind  = (2g-2)\dim G.\]
+\end{prop}
+
+\begin{defn}
+We say a flat $G$-bundle is \defterm{irreducible} if the subspace of infinitesimal gauge transformations this flat $G$-bundle coincides with $Z(\fg)$, the center of $\fg$.
+\end{defn}
+
+\begin{thm}[Narasimhan--Seshadri--Ramanathan]
+The moduli space of irreducible flat $G$-bundles on $\Sigma$ is a manifold of dimension $(2g-2)\dim G$. It is isomorphic to the moduli space of stable $G_\C$-bundles on $\Sigma$.
+\end{thm}
+
+\subsubsection{Symplectic vortex equations}
+
+We will now combine the two equations. Suppose $V$ is a unitary $G$-representation. Define a $G$-equivariant map
+\[\mu\colon \Sym^2_\R(V)\longrightarrow \fg^*\]
+by
+\[\mu(v) = \frac{1}{2}(xv, v)\]
+for $v\in V$ and $x\in\fg$ (note that the equation is quadratic in $v$).
+
+\begin{remark}
+A unitary representation is, in particular, a K\"ahler manifold and $\mu$ defines a moment map for the $G$-action.
+\end{remark}
+
+\begin{defn}
+The \defterm{symplectic vortex equations} are
+\begin{eqnarray*}
+\overline{\partial} \phi = 0 \\
+\ast F_\nabla + \mu(\phi) = 0,
+\end{eqnarray*}
+where
+\begin{itemize}
+\item $P\rightarrow \Sigma$ is a principal $G$-bundle.
+\item $\nabla$ is a connection on $P$.
+\item $\phi\in\Gamma(\Sigma, P\times^G V)$.
+\end{itemize}
+We again consider solutions modulo gauge transformations.
+\end{defn}
+
+\begin{prop}
+Consider a solution $(\phi, \nabla)$ of the symplectic vortex equations. The linearization of these equations at $(\phi, \nabla)$ is an elliptic PDE. If $\Sigma$ is compact, its index is
+\[\ind = (2-2g)(\dim_\C V - \dim G) + 2\deg(P\times^G V).\]
+\end{prop}
+
+\begin{example}
+The usual vortex equations correspond to the case $G=\U(1)$ and $V=\C$ the standard representation. In this case we have a Hermitian line bundle $L\rightarrow \Sigma$ with a unitary connection, $\phi$ is a section of $L$. The index of the linearized elliptic operator is $2\deg(L)$.
+\end{example}
+
+\subsection{3d equations}
+
+Let $N$ be a 3-dimensional manifold.
+
+\subsubsection{Dirac equation}
+
+The Dirac (also known as Fueter) equation in 3 and 4 dimensions is a quaternionic analog of the Cauchy--Riemann equation. Let us recall a few facts about spin structures in 3 dimensions:
+\begin{itemize}
+\item The 3-dimensional spin group is $\Spin(3)\cong \SU(2)$. It can be identified with the group of unit 1 quaternions. The spinor representation $\cS$ may be identified with quaternions $\bfH$ with the left action of unit 1 quaternions.
+
+\item The vector representation $V$ may be identified with the space $\Im\bfH$ of imaginary quaternions with the action of unit 1 quaternions by conjugation.
+
+\item There is an $\SU(2)$-equivariant map $c\colon V\otimes_\R \cS\rightarrow \cS$ given by quaternion multiplication. It is the 3-dimensional version of the Clifford action of vectors on spinors.
+\end{itemize}
+
+Let $N$ be a 3-dimensional manifold equipped with a spin structure; denote by $P\rightarrow N$ the corresponding $\Spin(3)$-bundle. It carries a natural connection $\nabla$ which induces the Levi-Civita connection on the oriented frame bundle. Let $\cS\rightarrow N$ be the spinor bundle
+\[\cS = P\times^{\SU(2)} \bfH\]
+which carries a right $\bfH$-module structure. 
+
+Let $W$ be an $\bfH$-module. And let
+\[\cS_W = P\times^{\SU(2)} W = \cS\otimes_\bfH W.\]
+Consider a section
+\[\phi\in\Gamma(N, \cS_W)\cong \Gamma(N, \cS_W).\]
+We have
+\[\nabla\phi\in \Omega^1(N, P\times^{\SU(2)} W)\cong \Gamma(N, P\times^{\SU(2)} (V\otimes_\R\cS\otimes_{\bfH} W).\]
+The Clifford multiplication $c\colon V\otimes \cS\rightarrow \cS$ therefore produces an element
+\[\slashed{\nabla}\phi\in \Gamma(N, P\times^{\SU(2)} W).\]
+We call $\slashed{\nabla}$ the \defterm{Dirac operator}.
+
+\begin{defn}
+The \defterm{Dirac equation} is the equation
+\[\slashed{\nabla}\phi=0\in\Gamma(N, \cS_W)\]
+for a smooth section $\phi$ of $\cS_W$.
+\end{defn}
+
+\begin{prop}
+The Dirac operator $\slashed{\nabla}$ on $\Gamma(N, \cS_W)$ is elliptic. If $N$ is compact, its index is $0$.
+\end{prop}
+
+\subsubsection{Bogomolny equation}
+
+Let $G$ be a compact connected Lie group.
+
+\begin{defn}
+The \defterm{Bogomolny equation} is
+\[F_\nabla + \ast \nabla \sigma = 0,\]
+where
+\begin{itemize}
+\item $P\rightarrow N$ is a principal $G$-bundle.
+\item $\nabla$ is a connection on $P$.
+\item $\sigma\in\Gamma(N, \ad P)$.
+\end{itemize}
+\end{defn}
+
+We begin with the following observation. Using the Bianchi identity we get
+\[\nabla \ast \nabla \sigma = 0.\]
+
+Here
+\[\nabla\colon\Omega^0(N, \ad P)\longrightarrow \Omega^1(N, \ad P).\]
+Suppose $N$ is closed and choose a nondegenerate pairing on $\fg$ which induces one on $\ad P$. Then $\nabla$ has a formal adjoint
+\[\nabla^*\colon \Omega^1(N, \ad P)\longrightarrow \Omega^0(N, \ad P)\]
+given by $\nabla^* = \ast \nabla \ast$. In particular, the above equation implies that
+\[\nabla^* \nabla \sigma = 0.\]
+Pairing this equation with $\sigma$ we get
+\[|\nabla \sigma|^2 = 0.\]
+So, $\nabla \sigma = 0$. In particular, the Bogomolny equation becomes $F_\nabla = 0$, i.e. for $N$ closed solutions of the Bogomolny equation are the same as flat connections.
+
+\begin{example}
+Suppose $G$ is abelian. Then $\sigma\in C^\infty(N)\otimes \fg$ and $\nabla \sigma = 0$ implies that $\sigma$ is constant.
+\end{example}
+
+\begin{remark}
+A natural question is why we are adding the field $\sigma$ at all. The linearization of the flatness equation in 3d is \emph{not} elliptic while the linearization of the Bogomolny equation is.
+\end{remark}
+
+\subsubsection{Seiberg--Witten equations}
+
+Let us now combine the Bogomolny and Dirac equations. Suppose $W$ is a quaternionic $G$-representation. Let $\gamma\colon \Im\bfH\rightarrow \End(W)$ be the action of imaginary quaternions. Its adjoint defines a map $\gamma^*\colon \End(W)\rightarrow (\Im\bfH)^*$.
+
+Fix a central order 2 element $-1\in G$ which acts on $W$ by $-1$. Let
+\[\Spin^G(3) = (\Spin(3)\times G)/(\Z/2\Z),\]
+where $\Z/2\Z\subset \Spin(3)\cong \SU(2)$ is given by $\pm 1$. Our assumption implies that $W$ is a $\Spin^G(3)$-representation (where $\SU(2)$ acts by the multiplication by unit 1 quaternions). Moreover, $V=\R^3$ is also a representation of $\Spin^G(3)$ (via the homomorphism $\Spin^G(3)\rightarrow \Spin(3)/(\Z/2\Z)\cong \SO(3)$). Let $\overline{G} = G/(\Z/2\Z)$.
+
+Define the map
+\[\mu\colon \Sym^2_\R(W)\longrightarrow (\fg\otimes \Im\bfH)^*\]
+by
+\[\mu(v) = \frac{1}{2}\gamma^*(vv^*).\]
+By construction it will be $\Spin^G(3)$-equivariant, where $\SU(2)$ acts on $\Im\bfH$ by conjugation by unit quaternions.
+
+\begin{remark}
+A quaternionic representation $W$ is, in particular, a hyperK\"ahler manifold and $\mu$ defines a moment map for the $G$-action.
+\end{remark}
+
+Choose a principal $\Spin^G(3)$-bundle $P\rightarrow N$ with an isomorphism $P\times^{\Spin^G(3)} V\cong \T M$ and let $\overline{P} = P\times^{\Spin^G(3)} \overline{G}$. Let
+\[\cS_W = P\times^{\Spin^G(3)} W.\]
+
+For a section $\phi\in\Gamma(N, \cS_W)$ we get $\Phi(\phi)\in \Omega^1(N, \ad \overline{P})$. A connection on $P$ can be specified in terms of a sum of a connection $\nabla$ on $\overline{P}$ and the Levi-Civita connection on $\T M$.
+
+\begin{defn}
+The (generalized) \defterm{Seiberg--Witten equations} are
+\begin{eqnarray*}
+\slashed{\nabla} \phi + [\sigma, \phi] = 0\\
+\ast F_\nabla + \nabla \sigma + \mu(\phi) = 0,
+\end{eqnarray*}
+where
+\begin{itemize}
+\item $P\rightarrow N$ is a principal $\Spin^G(3)$-bundle.
+\item $\nabla$ is a connection on $\overline{P}$.
+\item $\sigma\in\Gamma(M, \ad \overline{P})$.
+\item $\phi\in\Gamma(M, \cS_W)$.
+\end{itemize}
+\end{defn}
+
+In the case $W=0$ we get the Bogomolny equation and, as in that case, for $N$ closed we get $\nabla \sigma = 0$, so that we can remove it from consideration.
+
+Let us consider a special case of these equations. The usual 3-dimensional Seiberg--Witten equations correspond to the case $G=\U(1)$. Then
+\[\Spin^{\U(1)}(3) =: \Spin^c(3) = \U(2).\]
+It has a natural complex 2-dimensional (real 4-dimensional) representation $W$, where $\U(2)$ acts by complex $2\times 2$ matrices.
+
+Suppose $N$ is a closed oriented 3-manifold. There is a discrete set $\Spin^c(N)$ of $\Spin^c$-structures on $N$. It carries a free transitive action of $\rH^2(N; \Z)$, so that for two $\Spin^c$-structures $\sigma_1,\sigma_2$ we can define their difference $\sigma_2-\sigma_1\in\rH^2(N; \Z)$.
+
+One can show that the linearization of the Seiberg--Witten equations defines an elliptic PDE whose index (if $N$ is compact) is 0. So, assuming one applies an appropriate perturbation to make the moduli space of solutions a smooth manifold, we can ``count'' solutions of Seiberg--Witten equations. This count is independent of perturbations if $b_1(N)=\dim \rH_1(N;\C)>1$ (for $b_1(N)=0,1$ there is a wall-crossing behavior for the invariants). For a given element $\sigma\in\Spin^c(N)$ let $\sw_N(\sigma)\in\Z$ be the (signed) count. We can combine the different Seiberg--Witten invariants into a weighted count
+\[\SW_N(\sigma) = \sum_{h\in H} \sw_N(\sigma - h) h\in\Z[H],\]
+where $H=\rH_1(N;\Z)\cong\rH^2(N;\Z)$.
+
+\begin{remark}
+One can also consider the Seiberg--Witten equations on manifolds with boundaries. If we assume the metric of $N$ near the boundary $\Sigma=\partial N$ looks like $\Sigma\times [0, \infty)$ (i.e. $N$ has cylindrical ends), one can realize the moduli space of solutions of the Seiberg--Witten equations as providing a Lagrangian in the moduli space of solutions of the symplectic vortex equation on $\Sigma$.
+\end{remark}
+
+\begin{exercise}
+Let $\Sigma$ be a Riemann surface and $N=\Sigma\times \R$. Show that a spin structure on $\Sigma$ gives rise to a spin structure on $N$. In terms of Lie groups, this corresponds to describing a homomorphism $\Spin(2)\rightarrow \Spin(3)$ fitting into a commutative diagram
+\[
+\xymatrix{
+\Spin(2) \ar@{-->}[r] \ar[d] & \Spin(3) \ar[d] \\
+\SO(2) \ar[r] & \SO(3),
+}
+\]
+where $\Spin(2)\rightarrow \SO(2)$ is a connected $2:1$ cover.
+\end{exercise}
+
+\begin{exercise}
+Let $V$ be the vector representation of $\Spin(3)$ and $\cS$ the spin representation. Recall the Clifford multiplication map $V\otimes \cS\rightarrow \cS$ of $\Spin(3)$-representations. Using the homomorphism $\Spin(2)\rightarrow \Spin(3)$ defined in the previous exercise describe $\cS$ and $V$ as $\Spin(2)$-representations and describe the Clifford multiplication in these terms.
+\end{exercise}
+
+\begin{exercise}
+Choose a spin structure on $\Sigma$. Let $W = \bfH$. Recall that for $\phi\in\Gamma(N, \cS)$ (where $\cS$ is the spinor bundle on $N$) the Dirac equation is $\slashed{\nabla}\phi = 0$. Write explicitly the Dirac equation on $\Sigma\times \R$.
+\end{exercise}
