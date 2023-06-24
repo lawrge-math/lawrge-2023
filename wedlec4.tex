@@ -1,3 +1,129 @@
 % !TeX root = LAWRGe2023Notes.tex
 
-Hey this happened on Monday at 9 
+\subsection{$\Omega$-Background and Quantization}
+
+Recall that in an (fully extended) oriented 3d TQFT $Z: \Bord^{or}_{3} \rightarrow \Ch$, $Z(S^2)$ is an $\mathbb{E}_3$-algebra, i.e.~there is an action for any $n \in \bN$
+$$C_*(\mathrm{Conf}_n(\mathbb{R}^3)) \otimes Z(S^2)^{\otimes n} \rightarrow Z(S^2).$$
+In particular, it implies that the product structure on $Z(S^2)$ is homotopically commutative (we remark that this only requires the $\mathbb{E}_2$-structure). Consider the homotopy equivalence
+$$\mathrm{Conf}_2(\mathbb{R}^3) \simeq S^2, \; (p_1, p_2) \mapsto \frac{p_1 - p_2}{|p_1 - p_2|}.$$
+Then any closed 0-chain $p \in C_0(S^2)$ induces a product
+$$\star_p: Z(S^2)^{\otimes 2} \rightarrow Z(S^2).$$
+Denote the north and south poles by $N, S$, which correspond to the embedding $(e_1, -e_1) \subset \mathbb{R}^3$ and $(-e_1, e_1) \subset \mathbb{R}^3$. We have two products $\star_N, \star_S$, which correspond to the multiplication of $\cO_1$ with $\cO_2$ and respectively $\cO_2$ with $\cO_1$. Consider the 1-chain $\gamma \in C_1(S^2)$ such that $\partial \gamma = N - S$. $\gamma$ defines a homotopy $\cO_1 \star_N \cO_2 \sim \cO_1 \star_S \cO_2$ for any $\cO_1, \cO_2 \in Z(S^2)$. More precisely, denote $\alpha_n: C_*(\mathrm{Conf}_n(\mathbb{R}^3)) \rightarrow \Hom(Z(S_1)^{\otimes n}, Z(S^1))$. Then
+$$\partial \alpha_2(\gamma) = \alpha_2(\partial \gamma) = \alpha_2(N) - \alpha_2(S) = \star_N - \star_S.$$
+(The reader may notice that the proof only requires an $\mathbb{E}_2$-structure.) Consider the fundamental class $[S^2] \in C_2(S^2)$. It induces a Poisson bracket $\{-, -\}$ by
+$$\alpha_2([S^2]): Z(S^2)^{\otimes 2} \rightarrow Z(S^2)[2].$$
+$(Z(S^2), \star, \{-, -\})$ is a $\mathbb{P}_3$-algebra.
+
+Recall that $SO(3)$ acts on $\mathrm{Conf}_2(\mathbb{R}^3) \simeq S^2$. Consider the subgroup $S^1 \subset SO(3)$ given by rotation along the $\overline{NS}$-axis. Then we get an action
+$$C_*(S^1) \rightarrow C_*(SO(3)) \rightarrow \mathrm{End}(Z(S^2)).$$
+By definition, the homotopy $S^1$-fixed points of $Z(S^2)$ are
+$$Z(S^2)^{S^1} = \Hom_{C_*(S^1)-\mathrm{Mod}}(\mathbb{C}, Z(S^2)).$$
+Question: What is $Z(S^2)^{S^1}$?
+
+\subsection{$S^1$-Invariants and Equivariant Homology} We recall some basic facts.
+\begin{itemize}
+    \item Let $V$ be an $S^1$-module. Then $V^{S^1}$ is a $\mathbb{C}[\hbar]$-module, where $|\hbar| = 2$.
+    \item Let $X$ be an $S^1$-topological space. Then $C_*(S^1)$ acts on $C_*(X)$, and the homotopy fixed points are the equivariant Borel--Moore homology $C_*(X)^{S^1} \simeq C_*^{S^1}(X)$.
+\end{itemize}
+We only prove the first fact. In fact, it suffices to show that
+$$\Hom_{C_*(S^1)}(\mathbb{C}, \mathbb{C}) \simeq C_*^{S^1}(\pt) \simeq \mathbb{C}[\hbar].$$
+Note that $C_*(S^1) \simeq \mathbb{C}[\epsilon]/(\epsilon^2)$ where $|\epsilon| = -1$. We resolve the $C_*(S^1)$-module $\mathbb{C}$ by
+$$\dots \xrightarrow{\epsilon} \mathbb{C}[\epsilon]/(\epsilon^2)  \xrightarrow{\epsilon} \mathbb{C}[\epsilon]/(\epsilon^2).$$
+Take the total complex. Then the generator $\epsilon$ in each term of the resolution is supported in degree $0, -2, -4, \dots$. Then by taking linear dual we can conclude that 
+$$\Hom_{C_*(S^1)}(\mathbb{C}, \mathbb{C}) \simeq \mathbb{C}[\hbar], \; |\hbar| = 2.$$
+
+Given the $S^1$-action on $S^2$, by taking $S^1$-invariants we get an action
+$$C_*^{S^1}(\mathrm{Conf}_2(\mathbb{R}^3)) \otimes (Z(S^2)^{S^1})^{\otimes 2} \rightarrow Z(S^2)^{S^1}.$$
+Since $N, S$ are invariant under the $S^1$-rotations, we still have two multiplications $\star_N, \star_S$, but they are no longer homotopic as the 1-chain $\gamma$ whose boundary $\partial \gamma = N - S$ is no longer $S^1$-invariant. To compute the difference between $\star_N$ and $\star_S$, we need to know the equivariant homology $C_*^{S^1}(S^2) \simeq C_*^{S^1}(\mathrm{Conf}_2(\mathbb{R}^3))$.
+
+In order to compute $C_*^{S^1}(S^2)$, we need the following properties:
+\begin{itemize}
+    \item Let $T$ act on $X$, and $S^1 \subset T$ a closed subgroup that acts on $X$ freely. Then
+    $$C_*^T(X) \simeq C_*^{T/S^1}(X).$$
+    \item (Kirwan) Let $i: S^3 \hookrightarrow \mathbb{C}^2$ be the inclusion and $q: S^3 \rightarrow S^2$ the Hopf fibration. Let $T = T^2$ act on $\mathbb{C}^2$ be rotations on both components and $S^1 \subset T$ act on $\mathbb{C}^2$ diagonally. Then we have a surjective composition
+    $$C_*^{T}(\mathbb{C}^2) \xrightarrow{i^*} C_*^{T}(S^3) \xrightarrow{\sim} C_*^{S^1}(S^2).$$
+\end{itemize}
+Since there exists an $S^1$-equivariant contraction from $\mathbb{C}^2$ to $\pt$, we know that
+$$C_*^{T}(\mathbb{C}^2) \simeq C_*^{T}(\pt) \simeq \mathbb{C}[\mathfrak{t}] = \mathbb{C}[x_1, x_2],$$
+where $\mathfrak{t}$ is the Lie algebra of $T$. Hence it suffices to compute the kernel of the composition.
+\begin{itemize}
+    \item Let $V$ be a $T$-representation and $W \subset V$ a $T$-subrepresentation. Then the (equivariant) fundamental class can be computed by
+    $$[W] = e^T(V/W) \cap [V] \in H_*^{T}(V),$$
+    where $e^T(V/W)$ is the (equivariant) Euler class of the normal bundle $V/W$ of $W$. Moreover,
+    $$e^T(V/W) = \prod_{x: \text{ weights that appear in $V/W$}}x \in \mathbb{C}[\mathfrak{t}].$$
+\end{itemize}
+Consider the maps $\mathbb{C}^2 \xhookleftarrow{i} S^3 \xrightarrow{q} S^2$. The normal bundle of the class $[\mathbb{C} \times 0]$ has weight $x_2 \in \mathfrak{t}$, and the normal bundle of the class $[0 \times \mathbb{C}]$ has weight $x_1 \in \mathfrak{t}$. Finally, the intersection $[0] = [\mathbb{C} \times 0] \cap [0 \times \mathbb{C}]$ is sent to $\varnothing$ in $S^3$. Therefore, under the map
+$$C_*^{T}(\mathbb{C}^2) \rightarrow C_*^{S^1}(S^2), \; x_1 \cdot x_2 \mapsto 0.$$
+
+\begin{Lemma}
+    Let $S_1$ act on $S^2$ by rotation. Then $C_*^{S^1}(S^2) \simeq \mathbb{C}[x_1, x_2]/(x_1 x_2)$.
+\end{Lemma}
+
+We can also write down the $\mathbb{C}[\hbar]$-module structure of $C_*^{S^1}(S^2) \simeq \mathbb{C}[x_1, x_2]/(x_1 x_2)$. Note that $S^1$ acts diagonally on $\mathbb{C}^2$, so the induced action of chain complexes is also diagonal:
+$$\Delta: \mathbb{C}[\hbar] \rightarrow \mathbb{C}[x_1, x_2], \; \Delta(\hbar) = x_1 - x_2.$$
+
+\subsection{Quantization of the $\mathbb{E}_3$-Algebra $Z_{3d}(S^2)$}
+Under the diagram of maps $\mathbb{C}^2 \xhookleftarrow{i} S^3 \xrightarrow{q} S^2$, we know that $[\mathbb{C} \times 0]$ is mapped to the north pole $N \in S^2$, and $[0 \times \mathbb{C}]$ is mapped to the south pole $S \in S^2$. From the above computation, we then know that 
+$$x_1 = N \in C_*^{S^1}(S^2), \; x_1 = S \in C_*^{S^1}(S^2).$$
+Moreover, under the map $C_*^{T}(\mathbb{C}^2) \rightarrow C_*^{S^1}(S^2)$, we know that the (equivariant) fundamental class $[\mathbb{C}^2]$ is sent to the (equivariant) fundamental class $[S^2]$. Since the normal bundle of $\mathbb{C}^2$ has no weights, we know that
+$$1 = [S^2] \in C_*^{S^1}(S^2).$$
+Therefore, writing $\alpha_2^{S^1}: C_*^{S^1}(\mathrm{Conf}_2(\mathbb{R}^3)) \rightarrow  \Hom(Z(S^2)^{S^1})^{\otimes 2}, Z(S^2)^{S^1})$,
+$$\alpha_2^{S^1}(N) - \alpha_2^{S^1}(S) = \alpha_2^{S^1}(x_1 - x_2) = \alpha_2^{S^1}(\hbar [S^2]).$$
+We can conclude the following lemma (recall that $\star_N, \star_S$ represent the product $\cO_1 \star' \cO_2$ and respectively $\cO_2 \star' \cO_1$):
+
+\begin{Lemma}
+    Let $\star_N, \star_S$ be the equivariant products on $Z^{S^1}(S^2)$. Then $\star_N - \star_S = \hbar\{-, -\}$.
+\end{Lemma}
+
+In general, given a Poisson algebra $A$, if there exists a $\star'$ product on $A[[\hbar]]$ such that 
+$$\cO_1 \star' \cO_2 - \cO_2 \star' \cO_1 = \hbar\{\cO_1, \cO_2\} + O(\hbar^2)$$
+for any $\cO_1, \cO_2 \in A$, then $(A[[\hbar]], \star', \{-, -\})$ is called a \defterm{deformation quantization} of the Poisson algebra $(A, \star, \{-, -\})$. Hence here we call $Z(S^2)^{S^1}$ the quantization of $Z(S^2)$. One can show that $Z(S^2)^{S^1}$ is an $\mathbb{E}_1$-algebra.
+
+\subsection{Quantization of the Coulomb Branch $Z_{3dA}(S^2)$}
+Recall that for an algebraic group $G$ acting on the cotangent matter $T^*N$, the $3d$ Coulomb branch is $Z_{3dA}(S^2) = C_*(\mathrm{Maps}(\mathbb{B}, [N/G]))$. Hence the quantization is
+$$Z_{3dA}(S^2)^{S^1} = C_*^{S^1}(\mathrm{Maps}(\mathbb{B}, [N/G])),$$
+where $S^1$, or equivalently $\mathbb{C}^\times$, acts on $\mathbb{B}$ by rotation. We consider two basic examples.
+
+\begin{Example}
+    Let $N = 0$. $\mathrm{Maps}(\mathbb{B}, [\pt/G]) = \mathrm{Maps}(\mathbb{B}, BG) = \mathrm{Bun}_G(\mathbb{B})$ is the moduli space of principal $G$-bundles over $\mathbb{B}$. Fix trivializations of the principal bundle on the two copies of $\mathbb{D}$ and denote them by $P_0$ and $P_0'$. Then the gluing map on $\mathbb{D}^\times$ determines an isomorphism
+    $$\alpha: P_0|_{\mathbb{D}^\times} \xrightarrow{\sim} P_0'|_{\mathbb{D}^\times}, \; \alpha \in G((t)).$$
+    Since $G[[t]]$ acts on the space of trivializations $P_0$ and $P_0'$, we get
+    $$\mathrm{Bun}_G(\mathbb{B}) = G[[t]] \backslash G((t)) / G[[t]].$$
+
+    Meanwhile, $\mathbb{C}^\times$ also acts on the space $\mathrm{Bun}_G(\mathbb{B})$. Note that $\mathbb{C}^\times$ acts on $\mathrm{Spec}\, \mathbb{C}((t))$ by rotation so $s \cdot t^n = s^nt^n$. We can consider the semi-direct product 
+    $$\mathbb{C}^\times \rtimes G((t)), \; (s, 1) \cdot (1, t^n) = (1, s^nt^n) \cdot (s, 1).$$
+    There is an isomorphism of moduli spaces
+    $$\mathbb{C}^\times \backslash (G[[t]] \backslash G((t)) / G[[t]]) = (\mathbb{C}^\times \rtimes G[[t]]) \backslash (\mathbb{C}^\times \rtimes G((t))) / (\mathbb{C}^\times \rtimes G[[t]]).$$
+    
+    By projecting the left and right quotient space to a point, we get two projection maps
+    $$p_{L/R}: (\mathbb{C}^\times \rtimes G[[t]]) \backslash (\mathbb{C}^\times \rtimes G((t))) / (\mathbb{C}^\times \rtimes G[[t]]) \rightarrow \pt /  (\mathbb{C}^\times \rtimes G[[t]]).$$
+    Since taking equivariant cohomology with respect to $G$ is equivalent to taking equivariant cohomology with respect to $G[[t]]$, the projection maps then induce maps on equivariant cohomologies
+    $$p_{L/R}^*: C^*_{S^1 \times G}(\pt) \rightarrow C^*_{S^1}(\mathrm{Bun}_G(\mathbb{B})).$$
+    On the $t^n$-component of $G[[t]] \backslash G((t)) / G[[t]]$, choosing $x \in C^*_{G}(\pt)$, we have
+    $$p_L^*(x) = p_R^*(x) + p_R^*(n \hbar).$$
+    Here we have $x \cdot a = p_L^*(x) a$ and $a \cdot x = p_R^*(x) a$.
+
+    Now we can compute in $C_*^{S^1}(\mathrm{Bun}_G(\mathbb{B})) = \bigoplus_{n \in \mathbb{Z}} C_*^{S^1 \times G}(\pt) \left< t^n \right>,$
+    $$t^n \cdot t^m = t^{n+m}, \; x \cdot t^n - t^n \cdot x = p_L^*(x) t^n - p_R^*(x) t^n = n \hbar t^n.$$
+    This concludes the computation.
+\end{Example}
+
+\begin{Proposition}
+    Let $G = \mathbb{C}^\times$. Then $C_*^{S^1}(\mathrm{Bun}_G(\mathbb{B})) = \mathbb{C}[\hbar]\langle x, t \rangle/([x, t] = \hbar t)$.
+\end{Proposition}
+
+    Using the computation for $G = \mathbb{C}^\times$ and $N = 0$, we can compute the quantization of the Coulomb branch in more general abelian settings. Consider the vector bundle $T_{G,N} \rightarrow Gr_G$ and let $z: Gr_G \rightarrow T_{G,N}$ be the zero section. Consider the diagram
+    $$R_{G,N} \xhookrightarrow{i} T_{G,N} \xhookleftarrow{z} Gr_G.$$
+
+\begin{Theorem}
+    Let $G$ be an algebraic group and $N$ be a $G$-representation. Then $z^*i_*: C_*^{S^1}(R_{G,N} / G[[t]]) \rightarrow C_*^{S^1}(\mathrm{Bun}_G(\mathbb{B}))$ is an algebra homomorphism, and when $G$ is abelian, it is injective on homology.
+\end{Theorem}
+
+\begin{Example}
+    Let $G = \mathbb{C}^\times$ and $N = \mathbb{C}$. Then the above diagram $R_{G,N} \xhookrightarrow{i} T_{G,N} \xhookleftarrow{z} Gr_G$ can be written as
+    $$\bigsqcup_{n \in \mathbb{Z}} t^n \times (t^n \mathbb{C}[[t]] \cap \mathbb{C}[[t]]) \xhookrightarrow{i} \bigsqcup_{n \in \mathbb{Z}} t^n \times t^n \mathbb{C}[[t]] \xhookleftarrow{z} \bigsqcup_{n \in \mathbb{Z}} t^n \times 0.$$
+    On each $t^n$-component, the homology class 
+    $$[t^n \times  (t^n \mathbb{C}[[t]] \cap \mathbb{C}[[t]])] = e^T(t^n\mathbb{C}[[t]] /  (t^n \mathbb{C}[[t]] \cap \mathbb{C}[[t]])) t^n.$$
+    The computation will in the end show that
+    $$C_*^{S^1}(R_{G,N} / G[[t]]) \simeq \mathcal{D}_\hbar (\mathbb{C}) = \mathbb{C}[\hbar] \langle y, \partial_y \rangle / ([\partial_y, y] = \hbar).$$
+\end{Example}
