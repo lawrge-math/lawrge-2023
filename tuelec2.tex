@@ -1,3 +1,130 @@
 % !TeX root = LAWRGe2023Notes.tex
 
-Hey this happened on Monday at 9 
+\title{Reidemeister torsion and the Meng--Taubes--Turaev theorem}
+\author{Pavel Safronov}
+\maketitle
+
+If $M$ is a complex manifold, the partition function of the 2d B-model with target $M$ as well as the partition function of the 3d B-model with target $\T^* M$ are both given by Reidemeister torsion. In this lecture we introduce what it is as well as state the first example of a mirror symmetry phenomenon.
+
+\section{Torsion}
+
+Let $R$ be a commutative ring with a homomorphism $R\rightarrow K$ to a field $K$. Let $N$ be a connected finite CW complex (let $x\in N$ be a chosen basepoint) and $\cL$ a free $R$-module of finite rank equipped with a $\pi_1(N)$-action. It defines a homomorphism
+\[\pi_1(N)\longrightarrow \GL_n(R)\]
+and hence a homomorphism
+\[\det\colon \rH_1(N;\Z)\longrightarrow K^\times\]
+by post-composing the first map with $\GL_n(R)\rightarrow \GL_n(K)\xrightarrow{\det} K^\times$.
+
+Let $\tilde{N}\rightarrow N$ be the universal cover (with its natural $\pi_1(N)$-action) and lift the CW structure from $N$ to $\tilde{N}$. Consider the complex of cellular chains
+\[\rC_0(\tilde{N}; \Z)\xleftarrow{d} \rC_1(\tilde{N}; \Z)\xleftarrow{d} \dots\]
+as a complex of $\pi_1(N)$-representations. Applying $\otimes_{\Z[\pi_1(N)]}\cL$ we get the complex of cellular chains
+\[\rC_0(N; \cL)\xleftarrow{d} \rC_1(N; \cL)\xleftarrow{d} \dots\]
+
+Assume that this complex is acyclic when we apply $\otimes_R K$. Over a field an acyclic complex is contractible, so there is a contracting homotopy $h$ (defined over $K$).
+
+\begin{defn}
+	Let $N$ be a connected finite CW complex with a chosen basepoint $x\in N$. A \defterm{Turaev spider} $\fs$ is a choice of a path from the center of each cell to $x$.
+\end{defn}
+
+Note that given two spiders $\fs_1,\fs_2$, we may measure their difference $\fs_1-\fs_2\in\rH_1(N;\Z)$ as follows. The difference of two paths from $\sigma\in A_d$ to $x$ gives an element of $\rH_1(N; \Z)$; $\fs_1-\fs_2$ is defined to be an alternating sum of these differences over each cell. We say two Turaev spiders are equivalent if the difference between them gives the zero element of $\rH_1(N; \Z)$.
+
+\begin{prop}[Turaev]
+	Let $N$ be a closed oriented 3-manifold. There is a natural bijection between the set of Turaev spiders and the set of $\Spin^c$-structures. This bijection is equivariant for the action of $\rH_1(N; \Z)\cong\rH^2(N; \Z)$.
+\end{prop}
+
+Choose a basis of $\cL$, an ordering of cells and a Turaev spider $\fs$. The Turaev spider allows us to produce a canonical lift $\tilde{\sigma}$ to a cell of $\tilde{N}$ of each cell $\sigma$ of $N$. Therefore, the complex of cellular chains $\rC_\bullet(N; \cL)$ becomes a complex of free finite rank modules
+\[R^{n_1}\xleftarrow{d} R^{n_2}\xleftarrow{d} \dots\]
+
+Consider the map $d+h\colon \rC_{even}(N; \cL)\otimes_R K\rightarrow \rC_{odd}(N; \cL)\otimes_R K$. Since the complex of cellular chains is acyclic over $K$, this map is invertible. In particular, we can compute its determinant
+\[\det(d + h)\in K^\times.\]
+Let us analyze how this element changes if we make different choices:
+\begin{itemize}
+	\item Reordering the cells introduces a sign ambiguity into $\det(d + h)$.
+	
+	\item Changing the basis of $\cL_x$ changes $\det(d+h)$ by a unit of $R$.
+	
+	\item Changing the Turaev spider changes $\det(d+h)$ by the image of
+	\[\det\colon \rH_1(N; \Z)\longrightarrow K^\times.\]
+\end{itemize}
+
+So, from this setup we get an element
+\[\det(d + h)\in K^\times / R^\times.\]
+
+\section{Milnor torsion}
+
+Let us now specialize the discussion. Let $H=\rH_1(N; \Z)/\{torsion\}$, $R=\Z[H]$ and $K = \Q(H)$. We have $R^\times = \pm H$. Let $\cL = \Z[H]$ equipped with the obvious homomorphism $\pi_1(M)\rightarrow \rH_1(N; \Z)
+\rightarrow H\rightarrow \Z[H]$.
+
+\begin{defn}
+	The \defterm{Milnor torsion} $\tau(N)$ of $N$ is zero if the chain complex $\rC_\bullet(N; \cL)\otimes_R K$ is not acyclic and otherwise it is defined to be
+	\[\det(d + h)\in \Q(H) / (\pm H).\]
+\end{defn}
+
+\begin{example}
+	Consider the circle $N=S^1$. The Milnor torsion is
+	\[\tau(S^1) = \frac{1}{1-t}\in\Q(t)/(\pm t^\Z).\]
+\end{example}
+
+Let us now indicate how to define torsion without the ambiguity of $\pm t^\Z$ (this is known as \emph{Turaev (or refined) torsion}):
+\begin{itemize}
+	\item The ambiguity of $t^\Z$ would be resolved if we choose a Turaev spider. A more homotopy-theoretic definition is as follows. For a finite CW complex $N$ there is the homological Euler class $e(N)\rH_0(N; \Z)$. A bounding chain for this class is known as the \defterm{Euler structure}.
+	
+	\item The sign ambiguity arose because we could reorder the cells. To fix this ambiguity we can fix an orientation of the determinant line of $\rH_\bullet(N;\R)$.
+\end{itemize}
+
+\section{Meng--Taubes--Turaev}
+
+We are now ready to state one instance of 3-dimensional mirror symmetry. Let us recall that given the data of
+\begin{itemize}
+	\item A compact Lie group $G$.
+	\item A quaternionic $G$-representation $W$.
+\end{itemize}
+there are 3-dimensional TQFTs $Z_{3dA, W/\!/\!/G}$ and $Z_{3dB, W/\!/\!/G}$. Moreover, if the pairs $(G, W)$ and $(G^\vee, W^\vee)$ are 3d mirror, we should have an equivalence of 3d TQFTs
+\[Z_{3dA, W/\!/\!/G}\cong Z_{3dB, W^\vee/\!/\!/G^\vee}.\]
+One basic example of 3d mirror symmetry we will often return to is the 3d mirror symmetry between $(\U(1), \bH)$ and $(\pt, \bH)$.
+
+In particular, we expect an equality
+\[Z_{3dA, \bH/\!/\!/\U(1)}(N) = Z_{3dB, \bH}(N)\]
+of the partition functions of these TQFTs. We will not give all details, but:
+\begin{itemize}
+	\item The partition function of the 3d A-model for $(G, W)$ counts solutions of the Seiberg--Witten equations.
+	\item The partition function of the 3d B-model for $(G, V\otimes_\C \bH)$ computes the integral of torsion over the moduli space of pairs of a flat $G_\C$-bundle $P$ on $N$ and a flat section of the associated bundle $P\times^{G_\C} V$.
+\end{itemize}
+
+In the simplest case $(\U(1), \bH)$ we are reduced to computing Seiberg--Witten invariants.
+
+\begin{thm}[Meng--Taubes--Turaev]
+	Let $N$ be a 3-manifold with $b_1(N)>1$. There is an equality
+	\[\SW_N = \tau(N)\in\Z[H]/(\pm H).\]
+\end{thm}
+
+\begin{remark}
+	Choosing a $\Spin^c$ structure $\sigma$ we can refine the statement to an equality
+	\[\SW_N(\sigma) = \tau(N)\in\Z[H]/(\pm 1),\]
+	where $\tau(N)$ is the refined torsion which depends on $\sigma$.
+\end{remark}
+
+\begin{remark}
+	There are also more delicate statements when $b_1(N) = 1$ and $b_1(N)=0$. The problem with these cases is that the Seiberg--Witten invariants depend on perturbation and exhibit a wall-crossing behavior.
+\end{remark}
+
+\begin{exercise}
+	Consider the cell structure on $N=S^1$ with one 0-cell and one 1-cell. In this case $\pi_1(N)=\rH_1(N;\Z)=H$ and $\Z[H]=\Z[t, t^{-1}]$.
+	\begin{enumerate}
+		\item Lift the cell structure on $N$ to a cell structure on the universal cover $\tilde{N}$.
+		\item Show that the chain complex
+		\[C_\bullet = \rC_\bullet(\tilde{N}; \Z)\otimes_{\Z[H]}\Q(H)\]
+		is acyclic and find a contracting homotopy $h$ (i.e. a map $h\colon C_0\rightarrow C_1$ satisfying $dh + hd = \id$).
+		\item Compute the Milnor torsion
+		\[\det(d + h)\colon C_{even}\longrightarrow C_{odd}\]
+		as an element $\tau(S^1)\in\Q(t)/(\pm t^\Z)$.
+	\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+	Consider the cell structure on $S^1$ as before and the cell structure on $S^2$ with one 0-cell and one 2-cell. It induces the product cell structure on $N=S^1\times S^2$. Compute the Milnor torsion $\tau(S^1\times S^2)\in\Q(t)/(\pm t^\Z)$. (\emph{Hint}: the answer is the same as in the previous exercise.)
+\end{exercise}
+
+\begin{exercise}
+	Consider the cell structure on $S^1$ as before and the product cell structure on the two-torus $N=S^1\times S^1$. Compute the Milnor torsion $\tau(S^1\times S^1)\in\Q(t_1, t_2)/(\pm t_1^\Z t_2^\Z)$.
+\end{exercise}
+ 
