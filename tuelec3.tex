@@ -1,3 +1,123 @@
 % !TeX root = LAWRGe2023Notes.tex
 
-Hey this happened on Monday at 9 
+% \usepackage{amsmath,amssymb}
+% \DeclareMathOperator{\SU}{SU}\DeclareMathOperator{\USp}{USp}\DeclareMathOperator{\U}{U}\DeclareMathOperator{\Sp}{Sp}\DeclareMathOperator{\Aut}{Aut}
+Goal of lecture: fields \& SUSY actions; connect to Pavel's talk.\\
+Reminder: We are studying gauged linear $\sigma$-models. This means $W=\mathbb C^{2n}$, with $\mathbb P^1$'s worth of complex structures, and three distinguished ones $I$, $J$, $K$. Pick $I$ (by convention), which yields holomorphic coordinates $X_1,\ldots,X_n,Y_1,\ldots,Y_n$ (abbreviated as $(\vec X,\vec Y)$), and from an exercise we've seen that under $K$ the coordinates become $(\vec X-\overline{\vec Y},\vec X+\overline{\vec Y})$. The group of isometries of the hyperk\"ahler structure $(\gamma,I,\omega_I,\Omega_I)$ is $Aut(W;I,\gamma,\Omega)=USp(n)=\U(2n)\cap\Sp(2n;\mathbb C)$.\par
+Since it's a gauged theory, there is a continuous hyperk\"ahler $G$-action on $W$. This comes with $\mathbb P^1$'s worth of moment maps $\mu:W\to\mathfrak g^*$, each complex structure corresponding to one. Therefore there are three distinguished ones $\mu_I,\mu_J,\mu_K$. By definition of moment maps (***insert here***), the vector field $V$ that generates infinitesimal group actions is $V=\omega_I^{-1}d\mu_I=\omega_J^{-1}d\mu_J=\omega_K^{-1}d\mu_K$ (***explain the notation***).\par
+If we complexify $G$ (to $G_\mathbb C$) and the $G$-action, then the previous moment map $\mu_I$ (now denoted $\mu_\mathbb R$) becomes $\mu_\mathbb C=\mu_J+i\mu_K$, and $V$ becomes a holomorphic vector field $\Omega_I^{-1}d\mu_I$ on $W$.\\
+\textbf{Example.} $SU(2)\simeq USp(1)\curvearrowright\mathbb C^2$, the fundamental representation of $SU(2)$. Then $\mu_\mathbb R=\displaystyle\frac i2\begin{bmatrix}|X|^2-|Y|^2&2X\overline Y\\2\overline XY&-|X|^2+|Y|^2\end{bmatrix}$ and $\mu_\mathbb C=\begin{bmatrix}XY&-X^2\\Y^2&-XY\end{bmatrix}$. (***add computation***)\\
+(Fact: $\mu$ is always quadratic if $W$ is a vector space,  because ***.)\par
+A special case is $W=T^*V=V\oplus V^*$ (so-called \textbf{cotangent matter}), with $\rho:G\to U(n)\hookrightarrow USp(n)$, where $ U(n)\hookrightarrow USp(n)$ is given by $g\cdot\vec X=g\vec X$ for $\vec X\in V$ (matrix multiplication; $\vec X$ is a column matrix) and $g\cdot\vec Y=\vec Yg^{-1}$ for $\vec Y\in V^*$ (matrix multiplication; $\vec Y$ is a row matrix). In terms of matrices, the expression is either $g\mapsto\begin{bmatrix}g&\\&g^*\end{bmatrix}\in\U(2n)$ or $g\mapsto\begin{bmatrix}g&\\&g^\top{}^{-1}\end{bmatrix}\in\Sp(2n;\mathbb C)$ (***check these***). The $\U(n)$-moment maps are $\mu_\mathbb R=\vec X\vec X^\dagger-\vec Y^\dagger\vec Y$ and $\mu_\mathbb C=\vec X\vec Y$ (***check these***), and the $G$-moment maps are the $\U(n)$-moment maps pulled back by $\rho$ (composition of $\mu$ with $(D\rho)^*:\mathfrak u(n)^*\to\mathfrak g^*$).
+
+
+\subsection{Representation theory of $SU(2)$}
+
+Recall that $V_n \simeq \mathbb{C}^n$ is the complex $n$ dimensional irreducible 
+representation of $SU(2)$. Let $\overline{V}_n$ denote its complex conjugate, i.e. if an element 
+act by $g$ on $V_n$ then it acts by it's conjugation $\overline{g}$ on $\overline{V}_n$.
+Note that $\overline{V}_n \simeq V_n$ because for any $g \in SU(2)$, we have 
+$\overline{g} = \epsilon g \epsilon ^{-1}$ where $\epsilon = \begin{pmatrix}
+0 & -1 \\
+1 & 0 \\
+\end{pmatrix}$. This gives an explicit isomorphism between $\overline{V}_n \simeq V_n$,
+which we will use a lot when writing intertwiners of $SU(2)$ representations.
+
+Let $e_a, a \in \{+, -\}$ denote the weight basis for $V_2 \simeq \mathbb{C}^{2}$.
+In coordinates, if $e_+ = \begin{pmatrix}
+1 \\
+0 \\
+\end{pmatrix} $, $e_- = \begin{pmatrix}
+0 \\
+1 \\
+\end{pmatrix}$, then
+\[ 
+    \begin{pmatrix}
+    e ^{i \theta }& 0 \\
+    0 & e ^{-i \theta } \\
+    \end{pmatrix} e _{\pm} = e ^{\pm i \theta }e _{\pm}
+\]
+and
+\[ 
+    e ^{a} = \epsilon ^{ab}e_b
+\]
+is a weight basis for $\overline{V}_2$.
+
+The matrix $\epsilon $ also appears in other places. For example, consider 
+the intertwiner 
+\[ 
+    V_2 \otimes V_2 \xrightarrow[]{\simeq } V_3 \oplus V_1
+\]
+Projection to the trivial representation $V_1$ is given by 
+\begin{align*}
+    V_2 \otimes V_2 &\to V_1 \\
+    x^a e_a \otimes y^b e_b & \mapsto \epsilon _{ab}x^ay^b
+\end{align*}
+On the other hand, the projection to $V_3$ is given by Pauli matrices (which was 
+mentioned in Chris's lecture but we explicitly write down here): 
+\[ 
+    V_2 \otimes V_2 \xrightarrow[]{\sigma } V_3
+\]
+where 
+\[ 
+    \sigma _{ab}^\mu  = \left\{
+        \begin{pmatrix}
+        1 & \\
+         & -1\\
+        \end{pmatrix},
+        \begin{pmatrix}
+        -i &  \\
+         & -i \\
+        \end{pmatrix},
+        \begin{pmatrix}
+        &1 \\
+        -1 & \\
+        \end{pmatrix}
+    \right\}
+\]
+Here $a,b \in \{+,-\}, \mu \in \{1,2,3\}$, and the above formula should be understood
+as the expression for $\sigma ^1, \sigma ^2, \sigma ^3$.
+Almost all intertwiners that we will ever use come from combining $\epsilon $ and $\sigma $.
+For example, in the isomorphism $\overline{V}_2 \otimes V_2 \to V_3 \oplus V_1$,
+the $V_3$ component of the map should be given by the coefficients
+\[ 
+    \left(\sigma ^{\mu }\right)^a _{\hphantom{1} b} = \epsilon ^{ac} \sigma _{cb}^\mu 
+\]
+where the repreated indices are to be contracted.
+
+One last thing we need about $SU(2)$ representations is that odd dimensional representations
+of $SU(2)$ factors through the 2-1 covering map $SU(2) \to SO(3)$. In 3 dimensions 
+this can be seen as follows: the isomorphism $V_3 \to \overline{V}_3$ constructed 
+above is trivial, in other words the $SU(2)$ action on $V_3$ commutes with conjugation,
+so this is the complexification of the real representation $V _{3, \mathbb{R}}$.
+
+\subsection{Exercises}
+
+1. Consider the hyperk\"ahler $U(1)$ action on $\C^2$ given by
+%
+$$ (X,Y) \mapsto (e^{i\theta}X,e^{-i\theta}Y)\,. $$
+%
+(Check if you like that this preserves complex structure (it's a holomorphic action), the Hermitian metric $\gamma = |dX|^2+|dY|^2$, and the holomorphic symplectic form $\Omega=dX\wedge dY$.)
+
+Write down the vector field $v$ that generates the infinitesimal action. (It should look something like $v = i X\frac{\partial}{\partial X} + ...$). Then find the real moment map $\mu_\R$ for the action --- or use the expression from the lectures --- checking that it satisfies
+%
+$$  d\mu_\R = \iota_v \,\omega\,, $$
+%
+or, equivalently, $v = \omega^{-1} d\mu_\R$.
+
+Finally, use the holomorphic moment map $\mu_\C = XY$ as given in lectures to write down a holomorphic vector field $v_\C = \Omega^{-1}d\mu_\C$ that complexifies the original $U(1)$ action to a $\C^*$ action. Which structures ($I,\gamma,\omega,\Omega$?) on our hyperk\"ahler spaces are preserved by this complexified $\C^*$ ?
+
+
+
+2. In a theory of free matter ($G=1$, $W = \C^{2n}$), the SUSY transformations of hypermultiplets are
+%
+$$ Q_\alpha^{a\dot a} Z^{ib} = i\, \epsilon^{ab} \psi_\alpha^{i\dot a}\,,\qquad Q_\alpha^{a\dot a} \psi_\beta^{i\dot b} =  \epsilon^{\dot a \dot b} \partial_{\alpha\beta} Z^{i a}\,. $$
+%
+(Recall that the scalar, bosonic fields $Z^{ia}$ take values in the $4n$ doubled coordinates on $\C^{2n}$, satisfying constraints $\bar Z^{ia} = \Omega_{ij}\epsilon_{ab}Z^{jb}$.)
+
+The A and B twist supercharges can be taken to be
+%
+$$ Q_A  = \delta^\alpha_a Q_\alpha^{a\dot +} = Q_+^{+\dot +} + Q_-^{-\dot +}\,,\qquad Q_B  = \delta^\alpha_{\dot a} Q_\alpha^{+\dot a} = Q_+^{+\dot +} + Q_-^{+\dot -}\,. $$
+%
+Show that the equations of motion (a.k.a. fixed points) for $Q_A$ require $Z^{ia}$ to satisfy Dirac equations (now treating $SU(2)_H$ as `spin') while the equations of motion for $Q_B$ require  $Z^{ia}$ to be constant.
+
