@@ -1,0 +1,87 @@
+
+\subsection{Quiver gauge theories}
+
+Dualizing exact sequences appears many times in \textit{abelian} 3D mirror symmetry. \textit{Nonabelian} 3D mirror symmetry however is not as systematic. Not all gauge theories have gauge theory mirrors. There are rich families of mirror pairs, but they all come from string/M theory. 
+
+We form generalized quiver gauge theories from \textit{unitary quivers}, and get $3D, N=4$ theories. 
+
+\begin{definition}
+A unitary quiver is an unoriented graph with circle or square nodes 
+\begin{tikzpicture}[
+roundnode/.style={circle, draw=green!60, fill=green!5, very thick, minimum size=7mm},
+squarednode/.style={rectangle, draw=red!60, fill=red!5, very thick, minimum size=5mm},
+]
+%Nodes
+\node[squarednode]  (maintopic)  {n};
+\node[roundnode]  (rightsquare)  [right=of maintopic] {k};
+\end{tikzpicture}
+labelled by $k,n \in \mathbb{N}$, and edges between nodes. Attached to each circle node $v$ is the unitary group $U(n_v)$, where $n_v$ is the labelling of $v.$ Take the gauge group of the quiver to be the product over circle nodes $G = \prod_{\textit{circle nodes }v} U(n_v)$ and the representation space to be $W = \oplus_{v \rightarrow v'} (Hom(\bC^{n_v}, \bC^{n_{v'}}) \oplus Hom(\bC^{n_{v'}}, \bC^{n_v}))$.
+\end{definition}
+
+\begin{example}
+Consider the following quiver $\Gamma.$
+\begin{tikzpicture}[
+roundnode/.style={circle, draw=green!60, fill=green!5, very thick, minimum size=7mm},
+squarednode/.style={rectangle, draw=red!60, fill=red!5, very thick, minimum size=5mm},
+]
+%Nodes
+\node[roundnode]      (maintopic)                              {2};
+\node[roundnode]      (rightsquare)       [right=of maintopic] {1};
+\node[squarednode]    (lowersquare)       [below=of maintopic] {3};
+
+%Lines
+\draw[-] (maintopic.east) -- (rightsquare.west);
+\draw[-] (maintopic.south) -- (lowersquare.north);
+\end{tikzpicture}
+The gauge group is $U(2) \times U(1).$ Take $W = T^*(Hom(\bC, \bC^2) \oplus Hom(\bC^2, \bC^3))$. The Higgs branch $\mathcal{M}_H(\Gamma)$ of $\Gamma$ is the Nakajima quiver variety associated to $\Gamma.$ The Coulomb branch $\mathcal{M}_C(\Gamma)$ is the nilpotent cone $Nilp(\mathfrak{sl}_3)$, which is resolved by $T^* Flag(\mathfrak{sl}_3)$. In fact $\mathcal{M}_C \cong \mathcal{M}_H$, so this quiver is self-mirror.
+\end{example}
+
+We have two families of non-abelian dualities:
+
+\textbf{Family 1:} 11-dimensional M theory with $n$ M2 branes $\mathbb{R}^3 \times 0 \times 0$ on Kleinian singularities $\mathbb{R}^3 \times \bC^2/K_1 \times \bC^2/K_2$, where $K_1, K_2$ are discrete subgroups of $SU(2)$. The Higgs branch is $\mathcal{M}_H = \{\textit{n }  ADE(K_1)$ instantons on $\bC^2/K_2\}$, and the Coulomb branch $\mathcal{M}_C$ is defined in the same way with $K_1$ and $K_2$ swapped. Concretely, suppose we have $\mathbb{R}^3 \times \bC^2/\mathbb{Z}_k \times \bC^2/\mathbb{Z}_l$. Take the quiver $\Gamma$ to be the necklace of $l$ circle nodes, each decorated by $n$, with a single square node decorated by $k$ connecting to a single circle node. The 3D-mirror quiver $\Gamma'$ is the necklace of $k$ circle nodes, each decorated by $n$ with a single square node decorated by $l$ connecting to a single circle node. The Higgs branch is $\{\textit{n } U(k) $ instantons on $\bC^2/\mathbb{Z}_l\}$ and the Coulomb branch is with $k$ and $l$ swapped.
+
+Take $k=l=1$. Then $G = U(n), W = \mathfrak{gl}_n \oplus \mathbb{C}^n$ and $\mathcal{M}_H = Sym^n(T^*\mathbb{C}) \cong \mathcal{M}_C$. "Quantizing the Hilbert scheme $\rightarrow$ Cherednik algebras"
+
+\textbf{Family 2:}  D3 branes (ending on D5) in IIB string theory, Gaiotto-Witten "S-duality, boundary conditions...". Hanany-Witten moves provide an extremely efficient way to produce mirror theories. Also there are Nakajima bow varieties...
+
+\begin{example}
+Take
+\begin{tikzpicture}[
+roundnode/.style={circle, draw=green!60, fill=green!5, very thick, minimum size=7mm},
+squarednode/.style={rectangle, draw=red!60, fill=red!5, very thick, minimum size=5mm},
+]
+%Nodes
+\node[roundnode]      (maintopic)                              {2};
+\node[squarednode]    (lowersquare)       [below=of maintopic] {3};
+
+%Lines
+\draw[-] (maintopic.south) -- (lowersquare.north);
+\end{tikzpicture}
+The gauge group is $G = U(2), W = \bC^2 \otimes \bC^4$. The Higgs branch $\mathcal{M}_H$ is $T^*Gr(2,4).$
+\end{example}
+
+A major open problem is defining (almost) all levels in $Z^A, Z^B$ TQFTs for non-abelian theories! The things we do know are very little,
+\begin{enumerate}
+\item $Z(S^2)$ (but what is the HK metric on $\mathcal{M}_C$?)
+\item Symplectic duality folowing Webster, i.e. when $\mathcal{M}_C, \mathcal{M}_H$ have smooth symplectic resolutions
+\item From $Z^A_{G, V}(S^1)$ to $D^bCoh(\mathcal{M}_C^{res})$
+\end{enumerate}
+We want to define $Z(\Sigma_g), Z(S^1), Z(pt)$ for non-abelian theories and prove mirror symmetry.
+
+There are multiple constructions using derived algebraic geometry, analysis, vertex operator algebras (VOAs). In the last $Z_{A/B}(\Sigma_g) = $ conformal blocks of a VOA (Costello-Gaiotto). 
+
+Even for abelian theories, we would love to see complete 3-2-1-0 TQFT with definitions matching at all levels.
+
+There exists another twist! The holomorphic topological twist $Q_{HT}.$ This is related to elliptic cohomology, elliptic stable envelopes, vertex functions.
+
+With $G, T^* V, \mathcal{M}_H^{res} = T^*V//G$ with $\mu_{\mathbb{R}} \neq 0$, the elliptic cohomology gives $Z_{G, V}^{HT}(T^2).$
+
+Elliptic stable envelopes are $Z_{G,V}^{HT}(D^2 \times S^1) \cong Z_{G^{\vee}, V^{\vee}}^{HT}(D^2 \times S^1)$ with boundary condition $\alpha$ given by $D^2$, [Aganagic-Okounkov].
+
+Also, there's know homology. Teleman: "Gauge theory and Mirror Symmetry", $G$-actions on the Fukaya category.
+
+Quantum K-theory is defined for K\"ahler manfolds $(N=2)$, no need for hyperK\"ahler structure $(N=4).$ In 2D, A-twist, target K\"ahler, $Z(S^1) = QH^{\cdot}(X).$ In 3D, $N=2$ $\sigma$-model to $X$, we have $Q^{HT}$ and quantum K-theory is given by $Z_X^{HT}(S^1 \times S^1) = QK^{\cdot}(X).$
+
+Also some final words about vertex operator algebras, Kac-Moody, magnetic quivers.
+
+\end{document}
